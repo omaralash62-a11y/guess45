@@ -1,638 +1,611 @@
-* {
-    box-sizing: border-box;
+{
+box-sizing: border-box;
 }
+
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-    background: #030005;
-    font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+min-height: 100%;
 }
 
 body {
-    min-height: 100vh;
-    overflow-x: hidden;
-    color: white;
+margin: 0;
+min-height: 100vh;
+overflow-x: hidden;
 
-    background:
-        radial-gradient(
-            circle at 50% 25%,
-            rgba(120, 0, 0, 0.35),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 15% 85%,
-            rgba(80, 0, 100, 0.25),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(180, 0, 0, 0.18),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #020204,
-            #090006 45%,
-            #030003
-        );
+color: white;  
+font-family: Arial, sans-serif;  
 
-    position: relative;
+background:  
+    radial-gradient(  
+        ellipse at 50% 35%,  
+        rgba(120, 0, 0, .45),  
+        transparent 32%  
+    ),  
+    radial-gradient(  
+        ellipse at 20% 80%,  
+        rgba(90, 0, 100, .3),  
+        transparent 35%  
+    ),  
+    linear-gradient(  
+        180deg,  
+        #020002 0%,  
+        #080008 50%,  
+        #010001 100%  
+    );  
+
+position: relative;
+
 }
 
-/* DARK VIGNETTE */
+/* =====================================
+RED HORROR LIGHT
+===================================== */
 
 body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
+content: "";
+position: fixed;
 
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 25%,
-            rgba(0, 0, 0, 0.45) 65%,
-            rgba(0, 0, 0, 0.9) 100%
-        );
+width: 650px;  
+height: 650px;  
 
-    pointer-events: none;
-    z-index: 0;
+left: 50%;  
+top: 30%;  
+
+transform: translate(-50%, -50%);  
+
+border-radius: 50%;  
+
+background:  
+    radial-gradient(  
+        circle,  
+        rgba(255, 0, 0, .22),  
+        rgba(100, 0, 0, .08) 35%,  
+        transparent 70%  
+    );  
+
+filter: blur(30px);  
+
+animation: redPulse 3s infinite alternate;  
+
+pointer-events: none;  
+z-index: 0;
+
 }
 
-/* HORROR RED LIGHT */
+@keyframes redPulse {
+
+0% {  
+    opacity: .35;  
+    transform:  
+        translate(-50%, -50%)  
+        scale(.85);  
+}  
+
+100% {  
+    opacity: .8;  
+    transform:  
+        translate(-50%, -50%)  
+        scale(1.15);  
+}
+
+}
+
+/* =====================================
+GHOST
+===================================== */
 
 body::after {
-    content: "";
-    position: fixed;
+content: "👻";
 
-    width: 500px;
-    height: 500px;
+position: fixed;  
 
-    left: 50%;
-    top: 20%;
+left: 50%;  
+top: 23%;  
 
-    transform: translate(-50%, -50%);
+transform:  
+    translateX(-50%)  
+    scale(3.8);  
 
-    background: rgba(180, 0, 0, 0.12);
+font-size: 95px;  
 
-    border-radius: 50%;
+opacity: .14;  
 
-    filter: blur(90px);
+filter:  
+    grayscale(1)  
+    brightness(.55)  
+    blur(1px)  
+    drop-shadow(  
+        0 0 25px rgba(255, 0, 0, .55)  
+    );  
 
-    animation: horrorGlow 3s infinite alternate;
+animation:  
+    ghostFloat 4s ease-in-out infinite,  
+    ghostFade 3s infinite alternate;  
 
-    pointer-events: none;
-    z-index: 0;
+pointer-events: none;  
+
+z-index: 0;
+
 }
 
-@keyframes horrorGlow {
+@keyframes ghostFloat {
 
-    from {
-        opacity: 0.35;
-        transform:
-            translate(-50%, -50%)
-            scale(0.9);
-    }
+0% {  
+    transform:  
+        translateX(-50%)  
+        translateY(0)  
+        scale(3.8);  
+}  
 
-    to {
-        opacity: 0.8;
-        transform:
-            translate(-50%, -50%)
-            scale(1.15);
-    }
+50% {  
+    transform:  
+        translateX(-50%)  
+        translateY(-15px)  
+        scale(3.95);  
+}  
+
+100% {  
+    transform:  
+        translateX(-50%)  
+        translateY(0)  
+        scale(3.8);  
 }
 
+}
 
-/* GAME CONTAINER */
+@keyframes ghostFade {
+
+from {  
+    opacity: .08;  
+}  
+
+to {  
+    opacity: .20;  
+}
+
+}
+
+/* =====================================
+DARK VIGNETTE
+===================================== */
+
+body {
+box-shadow:
+inset 0 0 180px 70px rgba(0, 0, 0, .9);
+}
+
+/* =====================================
+GAME
+===================================== */
 
 .game {
-    position: relative;
-    z-index: 1;
+position: relative;
 
-    width: 100%;
-    min-height: 100vh;
+z-index: 2;  
 
-    padding: 20px;
+width: 100%;  
+min-height: 100vh;  
 
-    text-align: center;
+padding: 20px;  
+
+text-align: center;
+
 }
 
-
-/* MENU */
+/* =====================================
+MENU
+===================================== */
 
 #menu {
-    width: 100%;
-    max-width: 600px;
 
-    margin: 0 auto;
+width: 100%;  
+max-width: 600px;  
 
-    padding-top: 80px;
+margin: auto;  
+
+padding-top: 70px;
+
 }
 
-
-/* TITLE */
+/* =====================================
+TITLE
+===================================== */
 
 h1 {
-    margin: 0;
 
-    font-size: clamp(48px, 13vw, 80px);
+margin: 0;  
 
-    font-weight: 900;
+font-size:  
+    clamp(50px, 14vw, 85px);  
 
-    letter-spacing: 5px;
+font-weight: 900;  
 
-    color: #ff1111;
+letter-spacing: 5px;  
 
-    text-shadow:
-        0 0 5px #ff0000,
-        0 0 15px #ff0000,
-        0 0 35px rgba(255, 0, 0, 0.7);
+color: #ff1010;  
 
-    animation: titleFlicker 4s infinite;
+text-shadow:  
+    0 0 5px #ff0000,  
+    0 0 15px #ff0000,  
+    0 0 35px #9b0000,  
+    0 0 70px rgba(255, 0, 0, .5);  
+
+animation:  
+    horrorTitle 3s infinite;
+
 }
 
-@keyframes titleFlicker {
+@keyframes horrorTitle {
 
-    0%,
-    18%,
-    20%,
-    22%,
-    60%,
-    62%,
-    100% {
-        opacity: 1;
-    }
+0%,  
+18%,  
+20%,  
+60%,  
+62%,  
+100% {  
+    opacity: 1;  
+}  
 
-    19%,
-    21%,
-    61% {
-        opacity: 0.55;
-    }
+19%,  
+61% {  
+    opacity: .35;  
 }
 
+}
 
-/* SUBTITLE */
+/* =====================================
+SUBTITLE
+===================================== */
 
 h2 {
-    color: #ff8a8a;
 
-    font-size: 18px;
+color: #ff8a8a;  
 
-    letter-spacing: 3px;
+letter-spacing: 3px;  
 
-    text-shadow:
-        0 0 10px rgba(255, 0, 0, 0.7);
+text-shadow:  
+    0 0 12px red;
+
 }
 
-
-/* STATS */
+/* =====================================
+STATS
+===================================== */
 
 .stats {
-    margin: 35px auto;
 
-    padding: 18px;
+margin: 30px auto;  
 
-    max-width: 330px;
+padding: 18px;  
 
-    border: 1px solid rgba(255, 0, 0, 0.35);
+max-width: 340px;  
 
-    background:
-        rgba(10, 0, 5, 0.75);
+background:  
+    rgba(0, 0, 0, .65);  
 
-    box-shadow:
-        0 0 25px rgba(255, 0, 0, 0.12);
+border:  
+    1px solid rgba(255, 0, 0, .35);  
 
-    border-radius: 12px;
+border-radius: 12px;  
 
-    color: #ffd36a;
+color: #ffd34e;  
 
-    line-height: 2;
+box-shadow:  
+    0 0 25px rgba(255, 0, 0, .2);
+
 }
 
-
-/* BUTTON BASE */
+/* =====================================
+BUTTONS
+===================================== */
 
 button {
-    border: none;
 
-    border-radius: 10px;
+border: none;  
 
-    cursor: pointer;
+border-radius: 10px;  
 
-    color: white;
+color: white;  
 
-    transition:
-        transform 0.15s,
-        box-shadow 0.15s,
-        filter 0.15s;
+cursor: pointer;  
+
+transition:  
+    .15s;
+
+}
+
+button:hover {
+
+filter: brightness(1.3);
+
 }
 
 button:active {
-    transform: scale(0.94);
+
+transform: scale(.94);
+
 }
 
-
-/* START */
+/* =====================================
+START BUTTON
+===================================== */
 
 .start {
-    width: min(330px, 90%);
 
-    min-height: 75px;
+width: min(330px, 90%);  
 
-    font-size: 25px;
+height: 75px;  
 
-    font-weight: bold;
+font-size: 25px;  
 
-    letter-spacing: 2px;
+font-weight: bold;  
 
-    background:
-        linear-gradient(
-            180deg,
-            #b00000,
-            #520000
-        );
+background:  
+    linear-gradient(  
+        180deg,  
+        #b50000,  
+        #480000  
+    );  
 
-    box-shadow:
-        0 0 15px rgba(255, 0, 0, 0.5),
-        inset 0 0 15px rgba(255, 80, 80, 0.15);
+box-shadow:  
+    0 0 20px rgba(255, 0, 0, .5);
+
 }
 
-.start:hover {
-    filter: brightness(1.25);
-
-    box-shadow:
-        0 0 30px rgba(255, 0, 0, 0.8);
-}
-
-
-/* WARNING */
-
-.warning {
-    margin-top: 35px;
-
-    color: #b77b7b;
-
-    letter-spacing: 2px;
-
-    line-height: 1.8;
-}
-
-
-/* GAME SCREEN */
-
-#gameScreen {
-    width: 100%;
-    max-width: 650px;
-
-    margin: 0 auto;
-
-    padding-top: 15px;
-}
-
-
-/* TOP */
-
-.top {
-    display: flex;
-
-    justify-content: space-between;
-
-    padding: 10px;
-
-    color: #ffcccc;
-
-    font-weight: bold;
-}
-
-
-/* COINS */
-
-.coins {
-    margin: 10px;
-
-    color: #ffd34e;
-
-    font-weight: bold;
-
-    text-shadow:
-        0 0 10px rgba(255, 190, 0, 0.5);
-}
-
-
-/* LIVES */
-
-.lives {
-    margin: 15px;
-
-    color: #ff1616;
-
-    font-weight: bold;
-
-    text-shadow:
-        0 0 10px red;
-}
-
-
-/* COMBO */
-
-.combo {
-    margin: 10px;
-
-    color: #ff8b20;
-
-    font-size: 21px;
-
-    font-weight: bold;
-
-    text-shadow:
-        0 0 10px rgba(255, 100, 0, 0.6);
-}
-
-
-/* TIMER */
+/* =====================================
+TIMER
+===================================== */
 
 .timer {
-    margin-top: 5px;
 
-    font-size: clamp(70px, 18vw, 110px);
+font-size:  
+    clamp(75px, 20vw, 120px);  
 
-    font-weight: 900;
+font-weight: 900;  
 
-    color: #ff1111;
+color: #ff1111;  
 
-    text-shadow:
-        0 0 8px red,
-        0 0 25px red,
-        0 0 50px rgba(255, 0, 0, 0.6);
+text-shadow:  
+    0 0 8px red,  
+    0 0 25px red,  
+    0 0 60px rgba(255, 0, 0, .6);  
 
-    animation: timerPulse 1s infinite alternate;
+animation:  
+    timerPulse 1s infinite alternate;
+
 }
 
 @keyframes timerPulse {
 
-    from {
-        transform: scale(1);
-    }
+from {  
+    transform: scale(1);  
+}  
 
-    to {
-        transform: scale(1.04);
-    }
+to {  
+    transform: scale(1.06);  
 }
 
-
-/* MESSAGE */
-
-.message {
-    min-height: 70px;
-
-    margin: 15px;
-
-    color: white;
-
-    font-size: 20px;
-
-    font-weight: bold;
-
-    text-shadow:
-        0 0 10px rgba(255, 255, 255, 0.25);
 }
 
+/* =====================================
+INPUT
+===================================== */
 
-/* INPUT */
-
+input,
 #guessInput {
-    width: min(340px, 90%);
 
-    height: 65px;
+width: min(340px, 90%);  
 
-    padding: 10px;
+height: 65px;  
 
-    border-radius: 10px;
+border-radius: 10px;  
 
-    border: 1px solid #6d0000;
+border:  
+    1px solid #700000;  
 
-    outline: none;
+outline: none;  
 
-    text-align: center;
+background:  
+    rgba(0, 0, 0, .85);  
 
-    font-size: 25px;
+color: white;  
 
-    color: white;
+text-align: center;  
 
-    background:
-        rgba(5, 0, 5, 0.9);
+font-size: 25px;  
 
-    box-shadow:
-        0 0 15px rgba(255, 0, 0, 0.15);
+box-shadow:  
+    0 0 15px rgba(255, 0, 0, .2);
+
 }
 
+input:focus,
 #guessInput:focus {
-    border-color: red;
 
-    box-shadow:
-        0 0 20px rgba(255, 0, 0, 0.5);
+border-color: red;  
+
+box-shadow:  
+    0 0 25px rgba(255, 0, 0, .5);
+
 }
 
-
-/* GUESS */
+/* =====================================
+GUESS
+===================================== */
 
 .guess {
-    display: block;
 
-    width: 240px;
+width: 240px;  
 
-    height: 65px;
+height: 65px;  
 
-    margin: 20px auto;
+margin: 20px auto;  
 
-    font-size: 24px;
+font-size: 24px;  
 
-    font-weight: bold;
+font-weight: bold;  
 
-    background:
-        linear-gradient(
-            180deg,
-            #9d0000,
-            #450000
-        );
+background:  
+    linear-gradient(  
+        180deg,  
+        #a00000,  
+        #420000  
+    );  
 
-    box-shadow:
-        0 0 20px rgba(255, 0, 0, 0.35);
+box-shadow:  
+    0 0 20px rgba(255, 0, 0, .45);
+
 }
 
-.guess:hover {
-    filter: brightness(1.3);
-}
-
-
-/* POWERUPS */
+/* =====================================
+POWERUPS
+===================================== */
 
 .powerups {
-    display: flex;
 
-    justify-content: center;
+display: flex;  
 
-    gap: 10px;
+justify-content: center;  
 
-    flex-wrap: wrap;
+flex-wrap: wrap;  
 
-    margin-top: 20px;
+gap: 10px;  
+
+margin-top: 15px;
+
 }
 
 .powerups button {
-    width: 120px;
 
-    min-height: 60px;
+width: 120px;  
 
-    font-size: 12px;
+min-height: 60px;  
 
-    font-weight: bold;
+font-size: 12px;  
+
+font-weight: bold;
+
 }
 
-
-/* POWERUP COLORS */
-
 .plus {
-    background: #07521c;
-
-    box-shadow:
-        0 0 12px rgba(0, 255, 70, 0.25);
+background: #07551d;
 }
 
 .hint {
-    background: #132d8a;
-
-    box-shadow:
-        0 0 12px rgba(50, 100, 255, 0.3);
+background: #102b8c;
 }
 
 .free {
-    background: #6a146a;
-
-    box-shadow:
-        0 0 12px rgba(220, 50, 255, 0.3);
+background: #681268;
 }
 
-
-/* ADS */
+/* =====================================
+ADS
+===================================== */
 
 .ads {
-    display: flex;
 
-    justify-content: center;
+display: flex;  
 
-    gap: 10px;
+justify-content: center;  
 
-    flex-wrap: wrap;
+flex-wrap: wrap;  
 
-    margin-top: 18px;
+gap: 10px;  
+
+margin-top: 20px;
+
 }
 
 .ads button {
-    width: 140px;
 
-    min-height: 58px;
+width: 140px;  
 
-    font-size: 12px;
+height: 58px;  
 
-    font-weight: bold;
+font-size: 12px;  
 
-    background:
-        linear-gradient(
-            180deg,
-            #c55a00,
-            #632500
-        );
+font-weight: bold;  
 
-    box-shadow:
-        0 0 15px rgba(255, 100, 0, 0.3);
+background:  
+    linear-gradient(  
+        180deg,  
+        #d26000,  
+        #642700  
+    );  
+
+box-shadow:  
+    0 0 15px rgba(255, 100, 0, .35);
+
 }
 
-
-/* CHOICES */
+/* =====================================
+CHOICES
+===================================== */
 
 .choices {
-    display: grid;
 
-    grid-template-columns: repeat(2, 145px);
+display: grid;  
 
-    justify-content: center;
+grid-template-columns:  
+    repeat(2, 145px);  
 
-    gap: 12px;
+justify-content: center;  
 
-    margin: 20px auto;
+gap: 12px;  
+
+margin: 20px auto;
+
 }
 
 .choices button {
-    height: 60px;
 
-    font-size: 22px;
+height: 60px;  
 
-    font-weight: bold;
+font-size: 22px;  
 
-    background:
-        linear-gradient(
-            180deg,
-            #850000,
-            #350000
-        );
+font-weight: bold;  
 
-    box-shadow:
-        0 0 15px rgba(255, 0, 0, 0.35);
+background:  
+    linear-gradient(  
+        180deg,  
+        #900000,  
+        #350000  
+    );  
+
+box-shadow:  
+    0 0 18px rgba(255, 0, 0, .4);
+
 }
 
-
-/* MENU BUTTON */
-
-.menuButton {
-    width: 110px;
-
-    height: 45px;
-
-    margin-top: 20px;
-
-    background:
-        #180303;
-
-    border: 1px solid #650000;
-
-    color: #ffaaaa;
-}
-
-
-/* HIDDEN */
-
-.hidden {
-    display: none !important;
-}
-
-
-/* MOBILE */
+/* =====================================
+MOBILE
+===================================== */
 
 @media (max-width: 500px) {
 
-    #menu {
-        padding-top: 55px;
-    }
+#menu {  
+    padding-top: 45px;  
+}  
 
-    .powerups button {
-        width: 105px;
-    }
+.choices {  
+    grid-template-columns:  
+        repeat(2, 130px);  
+}  
 
-    .ads button {
-        width: 130px;
-    }
+.choices button {  
+    width: 130px;  
+}  
 
-    .choices {
-        grid-template-columns:
-            repeat(2, 130px);
-    }
+.powerups button {  
+    width: 105px;  
+}  
 
-    .choices button {
-        width: 130px;
-    }
+.ads button {  
+    width: 130px;  
+}
 
 }
