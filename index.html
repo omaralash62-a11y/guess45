@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUESS 45</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="game">
+
+    <div id="menu">
+
+        <h1>GUESS 45</h1>
+
+        <h2>THE 45 SECOND CHALLENGE</h2>
+
+        <div class="stats">
+            LEVEL <span id="menuLevel">1</span>
+            &nbsp;&nbsp; XP <span id="menuXP">0</span>
+            <br>
+            COINS <span id="menuCoins">0</span>
+            &nbsp;&nbsp; BEST <span id="menuBest">0</span>
+        </div>
+
+        <button class="start" onclick="startGame()">
+            START GAME
+        </button>
+
+        <p class="warning">
+            GUESS THE NUMBER<br>
+            SURVIVE 45 SECONDS
+        </p>
+
+    </div>
+
+
+    <div id="gameScreen" class="hidden">
+
+        <div class="top">
+
+            <div>
+                ROUND <span id="round">1</span>
+            </div>
+
+            <div>
+                SCORE: <span id="score">0</span>
+            </div>
+
+        </div>
+
+        <div class="coins">
+            COINS: <span id="coins">0</span>
+        </div>
+
+        <div class="lives" id="lives">
+            LIFE&nbsp;&nbsp; LIFE&nbsp;&nbsp; LIFE
+        </div>
+
+        <div class="combo" id="combo">
+            COMBO x0
+        </div>
+
+        <div class="timer" id="timer">
+            45
+        </div>
+
+        <div class="message" id="message">
+            GUESS THE NUMBER!
+        </div>
+
+        <input
+            id="guessInput"
+            type="number"
+            min="1"
+            max="100"
+            placeholder="ENTER 1 - 100"
+        >
+
+        <button class="guess" onclick="makeGuess()">
+            GUESS
+        </button>
+
+
+        <div class="powerups">
+
+            <button class="plus" onclick="plusTime()">
+                +10 SEC<br>
+                10 COINS
+            </button>
+
+            <button class="hint" onclick="useHint()">
+                HINT<br>
+                15 COINS
+            </button>
+
+            <button class="free" onclick="useFreeGuess()">
+                FREE GUESS<br>
+                20 COINS
+            </button>
+
+        </div>
+
+
+        <div class="ads">
+
+            <button onclick="watchAdCoins()">
+                WATCH AD<br>
+                +10 COINS
+            </button>
+
+            <button onclick="watchAdTime()">
+                WATCH AD<br>
+                +10 SEC
+            </button>
+
+        </div>
+
+
+        <div id="choices" class="choices hidden">
+
+            <button onclick="choiceSelected(this)">?</button>
+            <button onclick="choiceSelected(this)">?</button>
+            <button onclick="choiceSelected(this)">?</button>
+            <button onclick="choiceSelected(this)">?</button>
+
+        </div>
+
+
+        <button class="menuButton" onclick="backToMenu()">
+            MENU
+        </button>
+
+    </div>
+
+</div>
+
+<script src="game.js"></script>
+
+</body>
+</html>
