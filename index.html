@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,23 +9,339 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>GUESS 45 - The 45 Second Number Challenge</title>
+    <title>GUESS 45 - The 45 Second Challenge</title>
 
     <meta name="description"
-          content="Play GUESS 45, a fast and challenging 45-second number guessing game. Guess the secret number, earn coins, gain XP and survive as many rounds as possible.">
-
-    <meta name="keywords"
-          content="Guess 45, GUESS 45 game, number guessing game, 45 second game, online guessing game">
+          content="Play GUESS 45 online. Guess the secret number before the 45 second timer runs out, earn coins, gain XP and survive as many rounds as possible.">
 
     <meta name="robots"
           content="index, follow">
 
+    <meta name="keywords"
+          content="GUESS 45, Guess 45 game, number guessing game, online game, 45 second challenge">
+
     <link rel="canonical"
           href="https://omaralash62-a11y.github.io/guess45/">
 
-    <link rel="stylesheet"
-          href="style.css">
+    <meta property="og:title"
+          content="GUESS 45 - The 45 Second Challenge">
+
+    <meta property="og:description"
+          content="Play the GUESS 45 number guessing game online.">
+
+    <meta property="og:type"
+          content="website">
+
+    <meta property="og:url"
+          content="https://omaralash62-a11y.github.io/guess45/">
+
+    <!-- GAME STYLE -->
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
+
 <body>
+
+<div class="game">
+
+
+    <!-- ====================== -->
+    <!-- MENU -->
+    <!-- ====================== -->
+
+    <div id="menu">
+
+        <h1>GUESS 45</h1>
+
+        <h2>
+            THE 45 SECOND CHALLENGE
+        </h2>
+
+        <div class="stats">
+
+            LEVEL
+            <span id="menuLevel">1</span>
+
+            &nbsp;&nbsp;
+
+            XP
+            <span id="menuXP">0</span>
+
+            <br>
+
+            COINS
+            <span id="menuCoins">0</span>
+
+            &nbsp;&nbsp;
+
+            BEST
+            <span id="menuBest">0</span>
+
+        </div>
+
+
+        <button
+            class="start"
+            onclick="startGame()">
+
+            START GAME
+
+        </button>
+
+
+        <p class="warning">
+
+            GUESS THE NUMBER<br>
+            SURVIVE 45 SECONDS
+
+        </p>
+
+    </div>
+
+
+    <!-- ====================== -->
+    <!-- GAME -->
+    <!-- ====================== -->
+
+    <div
+        id="gameScreen"
+        class="hidden">
+
+
+        <div class="top">
+
+            <div>
+
+                ROUND
+                <span id="round">1</span>
+
+            </div>
+
+
+            <div>
+
+                SCORE:
+                <span id="score">0</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="coins">
+
+            COINS:
+            <span id="coins">0</span>
+
+        </div>
+
+
+        <div
+            class="lives"
+            id="lives">
+
+            LIFE&nbsp;&nbsp;
+            LIFE&nbsp;&nbsp;
+            LIFE
+
+        </div>
+
+
+        <div
+            class="combo"
+            id="combo">
+
+            COMBO x0
+
+        </div>
+
+
+        <div
+            class="timer"
+            id="timer">
+
+            45
+
+        </div>
+
+
+        <div
+            class="message"
+            id="message">
+
+            GUESS THE NUMBER!
+
+        </div>
+
+
+        <input
+            id="guessInput"
+            type="number"
+            min="1"
+            max="100"
+            placeholder="ENTER 1 - 100">
+
+
+        <button
+            class="guess"
+            onclick="makeGuess()">
+
+            GUESS
+
+        </button>
+
+
+        <!-- POWER UPS -->
+
+        <div class="powerups">
+
+
+            <button
+                class="plus"
+                onclick="plusTime()">
+
+                +10 SEC<br>
+                10 COINS
+
+            </button>
+
+
+            <button
+                class="hint"
+                onclick="useHint()">
+
+                HINT<br>
+                15 COINS
+
+            </button>
+
+
+            <button
+                class="free"
+                onclick="useFreeGuess()">
+
+                FREE GUESS<br>
+                20 COINS
+
+            </button>
+
+
+        </div>
+
+
+        <!-- ADS -->
+
+        <div class="ads">
+
+
+            <button
+                onclick="watchAdCoins()">
+
+                WATCH AD<br>
+                +10 COINS
+
+            </button>
+
+
+            <button
+                onclick="watchAdTime()">
+
+                WATCH AD<br>
+                +10 SEC
+
+            </button>
+
+
+        </div>
+
+
+        <!-- FOUR CHOICES -->
+
+        <div
+            id="choices"
+            class="choices hidden">
+
+
+            <button
+                onclick="choiceSelected(this)">
+                ?
+            </button>
+
+
+            <button
+                onclick="choiceSelected(this)">
+                ?
+            </button>
+
+
+            <button
+                onclick="choiceSelected(this)">
+                ?
+            </button>
+
+
+            <button
+                onclick="choiceSelected(this)">
+                ?
+            </button>
+
+
+        </div>
+
+
+        <button
+            class="menuButton"
+            onclick="backToMenu()">
+
+            MENU
+
+        </button>
+
+    </div>
+
+
+</div>
+
+
+<!-- ====================== -->
+<!-- SEO CONTENT -->
+<!-- ====================== -->
+
+<section
+    style="
+        max-width:700px;
+        margin:50px auto;
+        padding:20px;
+        text-align:center;
+        color:#ddd;
+    ">
+
+    <h2>Play GUESS 45 Online</h2>
+
+    <p>
+        GUESS 45 is an online number guessing challenge.
+        Find the secret number between 1 and 100 before
+        the timer reaches zero.
+    </p>
+
+    <h2>How to Play</h2>
+
+    <p>
+        Enter a number from 1 to 100 and press GUESS.
+        The game tells you whether you need to guess
+        higher or lower.
+    </p>
+
+</section>
+
+
+<!-- ====================== -->
+<!-- IMPORTANT: GAME ENGINE -->
+<!-- ====================== -->
+
+<script src="./game.js"></script>
+
+</body>
+
+</html>
