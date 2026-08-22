@@ -1,611 +1,542 @@
-{
-box-sizing: border-box;
+* {
+    box-sizing: border-box;
 }
-
 
 html,
 body {
-margin: 0;
-padding: 0;
-min-height: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
 }
 
 body {
-margin: 0;
-min-height: 100vh;
-overflow-x: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
 
-color: white;  
-font-family: Arial, sans-serif;  
+    color: white;
+    font-family: Arial, sans-serif;
 
-background:  
-    radial-gradient(  
-        ellipse at 50% 35%,  
-        rgba(120, 0, 0, .45),  
-        transparent 32%  
-    ),  
-    radial-gradient(  
-        ellipse at 20% 80%,  
-        rgba(90, 0, 100, .3),  
-        transparent 35%  
-    ),  
-    linear-gradient(  
-        180deg,  
-        #020002 0%,  
-        #080008 50%,  
-        #010001 100%  
-    );  
+    background:
+        radial-gradient(
+            ellipse at 50% 35%,
+            rgba(120, 0, 0, .45),
+            transparent 32%
+        ),
+        radial-gradient(
+            ellipse at 20% 80%,
+            rgba(90, 0, 100, .3),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #020002 0%,
+            #080008 50%,
+            #010001 100%
+        );
 
-position: relative;
+    position: relative;
 
+    box-shadow:
+        inset 0 0 180px 70px rgba(0, 0, 0, .9);
 }
 
-/* =====================================
-RED HORROR LIGHT
-===================================== */
+
+/* RED HORROR LIGHT */
 
 body::before {
-content: "";
-position: fixed;
+    content: "";
 
-width: 650px;  
-height: 650px;  
+    position: fixed;
 
-left: 50%;  
-top: 30%;  
+    width: 650px;
+    height: 650px;
 
-transform: translate(-50%, -50%);  
+    left: 50%;
+    top: 30%;
 
-border-radius: 50%;  
+    transform: translate(-50%, -50%);
 
-background:  
-    radial-gradient(  
-        circle,  
-        rgba(255, 0, 0, .22),  
-        rgba(100, 0, 0, .08) 35%,  
-        transparent 70%  
-    );  
+    border-radius: 50%;
 
-filter: blur(30px);  
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 0, 0, .22),
+            rgba(100, 0, 0, .08) 35%,
+            transparent 70%
+        );
 
-animation: redPulse 3s infinite alternate;  
+    filter: blur(30px);
 
-pointer-events: none;  
-z-index: 0;
+    animation: redPulse 3s infinite alternate;
 
+    pointer-events: none;
+
+    z-index: 0;
 }
 
 @keyframes redPulse {
 
-0% {  
-    opacity: .35;  
-    transform:  
-        translate(-50%, -50%)  
-        scale(.85);  
-}  
+    from {
+        opacity: .35;
 
-100% {  
-    opacity: .8;  
-    transform:  
-        translate(-50%, -50%)  
-        scale(1.15);  
+        transform:
+            translate(-50%, -50%)
+            scale(.85);
+    }
+
+    to {
+        opacity: .8;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+    }
 }
 
-}
 
-/* =====================================
-GHOST
-===================================== */
+/* GHOST */
 
 body::after {
-content: "👻";
+    content: "👻";
 
-position: fixed;  
+    position: fixed;
 
-left: 50%;  
-top: 23%;  
+    left: 50%;
+    top: 23%;
 
-transform:  
-    translateX(-50%)  
-    scale(3.8);  
+    transform:
+        translateX(-50%)
+        scale(3.8);
 
-font-size: 95px;  
+    font-size: 95px;
 
-opacity: .14;  
+    opacity: .14;
 
-filter:  
-    grayscale(1)  
-    brightness(.55)  
-    blur(1px)  
-    drop-shadow(  
-        0 0 25px rgba(255, 0, 0, .55)  
-    );  
+    filter:
+        grayscale(1)
+        brightness(.55)
+        blur(1px)
+        drop-shadow(
+            0 0 25px rgba(255, 0, 0, .55)
+        );
 
-animation:  
-    ghostFloat 4s ease-in-out infinite,  
-    ghostFade 3s infinite alternate;  
+    animation:
+        ghostFloat 4s ease-in-out infinite,
+        ghostFade 3s infinite alternate;
 
-pointer-events: none;  
+    pointer-events: none;
 
-z-index: 0;
-
+    z-index: 0;
 }
 
 @keyframes ghostFloat {
 
-0% {  
-    transform:  
-        translateX(-50%)  
-        translateY(0)  
-        scale(3.8);  
-}  
+    0% {
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(3.8);
+    }
 
-50% {  
-    transform:  
-        translateX(-50%)  
-        translateY(-15px)  
-        scale(3.95);  
-}  
+    50% {
+        transform:
+            translateX(-50%)
+            translateY(-15px)
+            scale(3.95);
+    }
 
-100% {  
-    transform:  
-        translateX(-50%)  
-        translateY(0)  
-        scale(3.8);  
-}
-
+    100% {
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(3.8);
+    }
 }
 
 @keyframes ghostFade {
 
-from {  
-    opacity: .08;  
-}  
+    from {
+        opacity: .08;
+    }
 
-to {  
-    opacity: .20;  
+    to {
+        opacity: .20;
+    }
 }
 
-}
 
-/* =====================================
-DARK VIGNETTE
-===================================== */
-
-body {
-box-shadow:
-inset 0 0 180px 70px rgba(0, 0, 0, .9);
-}
-
-/* =====================================
-GAME
-===================================== */
+/* GAME */
 
 .game {
-position: relative;
+    position: relative;
 
-z-index: 2;  
+    z-index: 2;
 
-width: 100%;  
-min-height: 100vh;  
+    width: 100%;
+    min-height: 100vh;
 
-padding: 20px;  
+    padding: 20px;
 
-text-align: center;
-
+    text-align: center;
 }
 
-/* =====================================
-MENU
-===================================== */
+
+/* MENU */
 
 #menu {
+    width: 100%;
+    max-width: 600px;
 
-width: 100%;  
-max-width: 600px;  
+    margin: auto;
 
-margin: auto;  
-
-padding-top: 70px;
-
+    padding-top: 70px;
 }
 
-/* =====================================
-TITLE
-===================================== */
+
+/* TITLE */
 
 h1 {
+    margin: 0;
 
-margin: 0;  
+    font-size:
+        clamp(50px, 14vw, 85px);
 
-font-size:  
-    clamp(50px, 14vw, 85px);  
+    font-weight: 900;
 
-font-weight: 900;  
+    letter-spacing: 5px;
 
-letter-spacing: 5px;  
+    color: #ff1010;
 
-color: #ff1010;  
+    text-shadow:
+        0 0 5px #ff0000,
+        0 0 15px #ff0000,
+        0 0 35px #9b0000,
+        0 0 70px rgba(255, 0, 0, .5);
 
-text-shadow:  
-    0 0 5px #ff0000,  
-    0 0 15px #ff0000,  
-    0 0 35px #9b0000,  
-    0 0 70px rgba(255, 0, 0, .5);  
-
-animation:  
-    horrorTitle 3s infinite;
-
+    animation: horrorTitle 3s infinite;
 }
 
 @keyframes horrorTitle {
 
-0%,  
-18%,  
-20%,  
-60%,  
-62%,  
-100% {  
-    opacity: 1;  
-}  
+    0%,
+    18%,
+    20%,
+    60%,
+    62%,
+    100% {
+        opacity: 1;
+    }
 
-19%,  
-61% {  
-    opacity: .35;  
+    19%,
+    61% {
+        opacity: .35;
+    }
 }
 
-}
 
-/* =====================================
-SUBTITLE
-===================================== */
+/* SUBTITLE */
 
 h2 {
+    color: #ff8a8a;
 
-color: #ff8a8a;  
+    letter-spacing: 3px;
 
-letter-spacing: 3px;  
-
-text-shadow:  
-    0 0 12px red;
-
+    text-shadow:
+        0 0 12px red;
 }
 
-/* =====================================
-STATS
-===================================== */
+
+/* STATS */
 
 .stats {
+    margin: 30px auto;
 
-margin: 30px auto;  
+    padding: 18px;
 
-padding: 18px;  
+    max-width: 340px;
 
-max-width: 340px;  
+    background:
+        rgba(0, 0, 0, .65);
 
-background:  
-    rgba(0, 0, 0, .65);  
+    border:
+        1px solid rgba(255, 0, 0, .35);
 
-border:  
-    1px solid rgba(255, 0, 0, .35);  
+    border-radius: 12px;
 
-border-radius: 12px;  
+    color: #ffd34e;
 
-color: #ffd34e;  
-
-box-shadow:  
-    0 0 25px rgba(255, 0, 0, .2);
-
+    box-shadow:
+        0 0 25px rgba(255, 0, 0, .2);
 }
 
-/* =====================================
-BUTTONS
-===================================== */
+
+/* BUTTONS */
 
 button {
+    border: none;
 
-border: none;  
+    border-radius: 10px;
 
-border-radius: 10px;  
+    color: white;
 
-color: white;  
+    cursor: pointer;
 
-cursor: pointer;  
-
-transition:  
-    .15s;
-
+    transition: .15s;
 }
 
 button:hover {
-
-filter: brightness(1.3);
-
+    filter: brightness(1.3);
 }
 
 button:active {
-
-transform: scale(.94);
-
+    transform: scale(.94);
 }
 
-/* =====================================
-START BUTTON
-===================================== */
+
+/* START */
 
 .start {
+    width: min(330px, 90%);
 
-width: min(330px, 90%);  
+    height: 75px;
 
-height: 75px;  
+    font-size: 25px;
 
-font-size: 25px;  
+    font-weight: bold;
 
-font-weight: bold;  
+    background:
+        linear-gradient(
+            180deg,
+            #b50000,
+            #480000
+        );
 
-background:  
-    linear-gradient(  
-        180deg,  
-        #b50000,  
-        #480000  
-    );  
-
-box-shadow:  
-    0 0 20px rgba(255, 0, 0, .5);
-
+    box-shadow:
+        0 0 20px rgba(255, 0, 0, .5);
 }
 
-/* =====================================
-TIMER
-===================================== */
+
+/* TIMER */
 
 .timer {
+    font-size:
+        clamp(75px, 20vw, 120px);
 
-font-size:  
-    clamp(75px, 20vw, 120px);  
+    font-weight: 900;
 
-font-weight: 900;  
+    color: #ff1111;
 
-color: #ff1111;  
+    text-shadow:
+        0 0 8px red,
+        0 0 25px red,
+        0 0 60px rgba(255, 0, 0, .6);
 
-text-shadow:  
-    0 0 8px red,  
-    0 0 25px red,  
-    0 0 60px rgba(255, 0, 0, .6);  
-
-animation:  
-    timerPulse 1s infinite alternate;
-
+    animation:
+        timerPulse 1s infinite alternate;
 }
 
 @keyframes timerPulse {
 
-from {  
-    transform: scale(1);  
-}  
+    from {
+        transform: scale(1);
+    }
 
-to {  
-    transform: scale(1.06);  
+    to {
+        transform: scale(1.06);
+    }
 }
 
-}
 
-/* =====================================
-INPUT
-===================================== */
+/* INPUT */
 
 input,
 #guessInput {
+    width: min(340px, 90%);
 
-width: min(340px, 90%);  
+    height: 65px;
 
-height: 65px;  
+    border-radius: 10px;
 
-border-radius: 10px;  
+    border: 1px solid #700000;
 
-border:  
-    1px solid #700000;  
+    outline: none;
 
-outline: none;  
+    background:
+        rgba(0, 0, 0, .85);
 
-background:  
-    rgba(0, 0, 0, .85);  
+    color: white;
 
-color: white;  
+    text-align: center;
 
-text-align: center;  
+    font-size: 25px;
 
-font-size: 25px;  
-
-box-shadow:  
-    0 0 15px rgba(255, 0, 0, .2);
-
+    box-shadow:
+        0 0 15px rgba(255, 0, 0, .2);
 }
 
 input:focus,
 #guessInput:focus {
+    border-color: red;
 
-border-color: red;  
-
-box-shadow:  
-    0 0 25px rgba(255, 0, 0, .5);
-
+    box-shadow:
+        0 0 25px rgba(255, 0, 0, .5);
 }
 
-/* =====================================
-GUESS
-===================================== */
+
+/* GUESS */
 
 .guess {
+    width: 240px;
 
-width: 240px;  
+    height: 65px;
 
-height: 65px;  
+    margin: 20px auto;
 
-margin: 20px auto;  
+    font-size: 24px;
 
-font-size: 24px;  
+    font-weight: bold;
 
-font-weight: bold;  
+    background:
+        linear-gradient(
+            180deg,
+            #a00000,
+            #420000
+        );
 
-background:  
-    linear-gradient(  
-        180deg,  
-        #a00000,  
-        #420000  
-    );  
-
-box-shadow:  
-    0 0 20px rgba(255, 0, 0, .45);
-
+    box-shadow:
+        0 0 20px rgba(255, 0, 0, .45);
 }
 
-/* =====================================
-POWERUPS
-===================================== */
+
+/* POWERUPS */
 
 .powerups {
+    display: flex;
 
-display: flex;  
+    justify-content: center;
 
-justify-content: center;  
+    flex-wrap: wrap;
 
-flex-wrap: wrap;  
+    gap: 10px;
 
-gap: 10px;  
-
-margin-top: 15px;
-
+    margin-top: 15px;
 }
 
 .powerups button {
+    width: 120px;
 
-width: 120px;  
+    min-height: 60px;
 
-min-height: 60px;  
+    font-size: 12px;
 
-font-size: 12px;  
-
-font-weight: bold;
-
+    font-weight: bold;
 }
 
 .plus {
-background: #07551d;
+    background: #07551d;
 }
 
 .hint {
-background: #102b8c;
+    background: #102b8c;
 }
 
 .free {
-background: #681268;
+    background: #681268;
 }
 
-/* =====================================
-ADS
-===================================== */
+
+/* ADS */
 
 .ads {
+    display: flex;
 
-display: flex;  
+    justify-content: center;
 
-justify-content: center;  
+    flex-wrap: wrap;
 
-flex-wrap: wrap;  
+    gap: 10px;
 
-gap: 10px;  
-
-margin-top: 20px;
-
+    margin-top: 20px;
 }
 
 .ads button {
+    width: 140px;
 
-width: 140px;  
+    height: 58px;
 
-height: 58px;  
+    font-size: 12px;
 
-font-size: 12px;  
+    font-weight: bold;
 
-font-weight: bold;  
+    background:
+        linear-gradient(
+            180deg,
+            #d26000,
+            #642700
+        );
 
-background:  
-    linear-gradient(  
-        180deg,  
-        #d26000,  
-        #642700  
-    );  
-
-box-shadow:  
-    0 0 15px rgba(255, 100, 0, .35);
-
+    box-shadow:
+        0 0 15px rgba(255, 100, 0, .35);
 }
 
-/* =====================================
-CHOICES
-===================================== */
+
+/* CHOICES */
 
 .choices {
+    display: grid;
 
-display: grid;  
+    grid-template-columns:
+        repeat(2, 145px);
 
-grid-template-columns:  
-    repeat(2, 145px);  
+    justify-content: center;
 
-justify-content: center;  
+    gap: 12px;
 
-gap: 12px;  
-
-margin: 20px auto;
-
+    margin: 20px auto;
 }
 
 .choices button {
+    height: 60px;
 
-height: 60px;  
+    font-size: 22px;
 
-font-size: 22px;  
+    font-weight: bold;
 
-font-weight: bold;  
+    background:
+        linear-gradient(
+            180deg,
+            #900000,
+            #350000
+        );
 
-background:  
-    linear-gradient(  
-        180deg,  
-        #900000,  
-        #350000  
-    );  
-
-box-shadow:  
-    0 0 18px rgba(255, 0, 0, .4);
-
+    box-shadow:
+        0 0 18px rgba(255, 0, 0, .4);
 }
 
-/* =====================================
-MOBILE
-===================================== */
+
+/* MOBILE */
 
 @media (max-width: 500px) {
 
-#menu {  
-    padding-top: 45px;  
-}  
+    #menu {
+        padding-top: 45px;
+    }
 
-.choices {  
-    grid-template-columns:  
-        repeat(2, 130px);  
-}  
+    .choices {
+        grid-template-columns:
+            repeat(2, 130px);
+    }
 
-.choices button {  
-    width: 130px;  
-}  
+    .choices button {
+        width: 130px;
+    }
 
-.powerups button {  
-    width: 105px;  
-}  
+    .powerups button {
+        width: 105px;
+    }
 
-.ads button {  
-    width: 130px;  
-}
-
+    .ads button {
+        width: 130px;
+    }
 }
