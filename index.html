@@ -4,19 +4,17 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>GUESS 45</title>
 
 <meta name="description"
-content="Play GUESS 45 online - The 45 Second Challenge.">
+content="GUESS 45 - The 45 Second Challenge">
 
 <style>
 
 /* =========================
-   GENERAL
+   RESET
 ========================= */
 
 * {
@@ -31,35 +29,32 @@ body {
 }
 
 body {
-
     min-height: 100vh;
-
     overflow-x: hidden;
 
     color: white;
-
     font-family: Arial, sans-serif;
 
     background:
-
         radial-gradient(
             ellipse at 50% 35%,
             rgba(120,0,0,.45),
             transparent 32%
         ),
-
         radial-gradient(
             ellipse at 20% 80%,
-            rgba(90,0,100,.3),
+            rgba(90,0,100,.30),
             transparent 35%
         ),
-
         linear-gradient(
             180deg,
             #020002 0%,
             #080008 50%,
             #010001 100%
         );
+
+    box-shadow:
+        inset 0 0 180px 70px rgba(0,0,0,.9);
 }
 
 
@@ -85,7 +80,6 @@ body::before {
     border-radius: 50%;
 
     background:
-
         radial-gradient(
             circle,
             rgba(255,0,0,.22),
@@ -103,11 +97,9 @@ body::before {
     z-index: 0;
 }
 
-
 @keyframes redPulse {
 
     from {
-
         opacity: .35;
 
         transform:
@@ -116,7 +108,6 @@ body::before {
     }
 
     to {
-
         opacity: .8;
 
         transform:
@@ -127,7 +118,7 @@ body::before {
 
 
 /* =========================
-   GAME CONTAINER
+   MAIN
 ========================= */
 
 .game {
@@ -158,7 +149,7 @@ body::before {
 
     margin: auto;
 
-    padding-top: 70px;
+    padding-top: 65px;
 }
 
 
@@ -180,19 +171,14 @@ h1 {
     color: #ff1010;
 
     text-shadow:
-
         0 0 5px #ff0000,
-
         0 0 15px #ff0000,
-
         0 0 35px #9b0000,
-
         0 0 70px rgba(255,0,0,.5);
 
     animation:
         horrorTitle 3s infinite;
 }
-
 
 @keyframes horrorTitle {
 
@@ -202,21 +188,14 @@ h1 {
     60%,
     62%,
     100% {
-
         opacity: 1;
     }
 
     19%,
     61% {
-
         opacity: .35;
     }
 }
-
-
-/* =========================
-   SUBTITLE
-========================= */
 
 h2 {
 
@@ -239,7 +218,7 @@ h2 {
 
     padding: 18px;
 
-    max-width: 340px;
+    max-width: 350px;
 
     background:
         rgba(0,0,0,.65);
@@ -253,6 +232,39 @@ h2 {
 
     box-shadow:
         0 0 25px rgba(255,0,0,.2);
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+
+    border: none;
+
+    border-radius: 10px;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition:
+        .15s;
+}
+
+button:hover {
+
+    filter:
+        brightness(1.3);
+}
+
+button:active {
+
+    transform:
+        scale(.94);
 }
 
 
@@ -271,16 +283,7 @@ h2 {
 
     font-weight: bold;
 
-    color: white;
-
-    border: none;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-
     background:
-
         linear-gradient(
             180deg,
             #b50000,
@@ -289,21 +292,6 @@ h2 {
 
     box-shadow:
         0 0 20px rgba(255,0,0,.5);
-
-    transition: .15s;
-}
-
-
-.start:hover {
-
-    filter: brightness(1.3);
-
-}
-
-
-.start:active {
-
-    transform: scale(.94);
 }
 
 
@@ -321,7 +309,57 @@ h2 {
 
     margin: auto;
 
-    padding-top: 35px;
+    padding-top: 25px;
+}
+
+
+/* =========================
+   GAME TOP BAR
+========================= */
+
+.gameStats {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin: 15px auto;
+}
+
+.statBox {
+
+    min-width: 105px;
+
+    padding: 10px 8px;
+
+    background:
+        rgba(0,0,0,.75);
+
+    border:
+        1px solid rgba(255,0,0,.3);
+
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    color: #ddd;
+}
+
+.statBox span {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #ffd34e;
+
+    font-size: 18px;
+
+    font-weight: bold;
 }
 
 
@@ -331,6 +369,8 @@ h2 {
 
 .timer {
 
+    margin-top: 5px;
+
     font-size:
         clamp(75px,20vw,120px);
 
@@ -339,29 +379,61 @@ h2 {
     color: #ff1111;
 
     text-shadow:
-
         0 0 8px red,
-
         0 0 25px red,
-
         0 0 60px rgba(255,0,0,.6);
 
     animation:
         timerPulse 1s infinite alternate;
 }
 
-
 @keyframes timerPulse {
 
     from {
-
-        transform: scale(1);
+        transform:
+            scale(1);
     }
 
     to {
-
-        transform: scale(1.06);
+        transform:
+            scale(1.06);
     }
+}
+
+
+/* =========================
+   LIVES
+========================= */
+
+.lives {
+
+    margin: 5px;
+
+    font-size: 24px;
+
+    letter-spacing: 5px;
+
+    color: #ff2020;
+
+    text-shadow:
+        0 0 10px red;
+}
+
+
+/* =========================
+   COMBO
+========================= */
+
+#comboText {
+
+    min-height: 28px;
+
+    color: #ff9d00;
+
+    font-weight: bold;
+
+    text-shadow:
+        0 0 10px orange;
 }
 
 
@@ -375,6 +447,8 @@ h2 {
         min(340px,90%);
 
     height: 65px;
+
+    margin-top: 10px;
 
     border-radius: 10px;
 
@@ -396,7 +470,6 @@ h2 {
         0 0 15px rgba(255,0,0,.2);
 }
 
-
 #guessInput:focus {
 
     border-color: red;
@@ -416,20 +489,13 @@ h2 {
 
     height: 65px;
 
-    margin: 20px auto;
+    margin: 18px auto;
 
     font-size: 24px;
 
     font-weight: bold;
 
-    color: white;
-
-    border: none;
-
-    border-radius: 10px;
-
     background:
-
         linear-gradient(
             180deg,
             #a00000,
@@ -449,11 +515,171 @@ h2 {
 
     min-height: 35px;
 
-    margin: 15px;
+    margin: 10px;
 
     font-size: 20px;
 
     font-weight: bold;
+}
+
+
+/* =========================
+   FOUR CHOICES
+========================= */
+
+.choices {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,145px);
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin: 18px auto;
+}
+
+.choice {
+
+    height: 60px;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    background:
+        linear-gradient(
+            180deg,
+            #900000,
+            #350000
+        );
+
+    box-shadow:
+        0 0 18px rgba(255,0,0,.4);
+}
+
+
+/* =========================
+   POWERUPS
+========================= */
+
+.sectionTitle {
+
+    margin-top: 25px;
+
+    color: #aaa;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+.powerups {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+.powerups button {
+
+    width: 110px;
+
+    min-height: 60px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.plus {
+
+    background:
+        linear-gradient(
+            #08752a,
+            #043a16
+        );
+}
+
+.hint {
+
+    background:
+        linear-gradient(
+            #183caf,
+            #0b1c5c
+        );
+}
+
+.free {
+
+    background:
+        linear-gradient(
+            #861b86,
+            #430943
+        );
+}
+
+
+/* =========================
+   AD AREA
+========================= */
+
+.ads {
+
+    margin:
+        25px auto 10px;
+
+    padding: 15px;
+
+    max-width: 400px;
+
+    border:
+        1px dashed rgba(255,130,0,.45);
+
+    border-radius: 12px;
+
+    background:
+        rgba(50,20,0,.25);
+}
+
+.adsTitle {
+
+    color: #ff9d32;
+
+    font-size: 12px;
+
+    margin-bottom: 10px;
+}
+
+.adButton {
+
+    width: 145px;
+
+    height: 55px;
+
+    margin: 4px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    background:
+        linear-gradient(
+            180deg,
+            #d26000,
+            #642700
+        );
+
+    box-shadow:
+        0 0 15px rgba(255,100,0,.35);
 }
 
 
@@ -463,19 +689,48 @@ h2 {
 
 .menuButton {
 
-    margin-top: 25px;
+    margin-top: 20px;
 
-    padding: 14px 30px;
+    padding: 13px 28px;
+
+    background:
+        #222;
 
     color: white;
 
-    border: none;
+    font-weight: bold;
+}
 
-    border-radius: 10px;
 
-    background: #222;
+/* =========================
+   GAME OVER
+========================= */
 
-    cursor: pointer;
+#gameOver {
+
+    display: none;
+
+    margin: 25px auto;
+
+    padding: 20px;
+
+    max-width: 350px;
+
+    background:
+        rgba(0,0,0,.85);
+
+    border:
+        1px solid red;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 0 25px rgba(255,0,0,.4);
+}
+
+#gameOver h2 {
+
+    color: red;
 }
 
 
@@ -483,7 +738,7 @@ h2 {
    MOBILE
 ========================= */
 
-@media (max-width:500px) {
+@media(max-width:500px) {
 
     #homePage {
 
@@ -492,7 +747,23 @@ h2 {
 
     #gamePage {
 
-        padding-top: 25px;
+        padding-top: 15px;
+    }
+
+    .choices {
+
+        grid-template-columns:
+            repeat(2,130px);
+    }
+
+    .choice {
+
+        width: 130px;
+    }
+
+    .powerups button {
+
+        width: 105px;
     }
 }
 
@@ -507,9 +778,9 @@ h2 {
 <div class="game">
 
 
-<!-- =================================
-     HOME PAGE
-================================= -->
+<!-- ==================================================
+     HOME
+================================================== -->
 
 <section id="homePage">
 
@@ -525,23 +796,22 @@ h2 {
     <div class="stats">
 
         LEVEL:
-        <span id="level">
-            1
-        </span>
+        <span id="homeLevel">1</span>
 
-        <br><br>
+        <br>
+
+        XP:
+        <span id="homeXP">0</span>
+
+        <br>
 
         COINS:
-        <span id="coins">
-            0
-        </span>
+        <span id="homeCoins">0</span>
 
-        <br><br>
+        <br>
 
         BEST:
-        <span id="best">
-            0
-        </span>
+        <span id="homeBest">0</span>
 
     </div>
 
@@ -558,15 +828,40 @@ h2 {
 
 
 
-<!-- =================================
-     GAME PAGE
-================================= -->
+<!-- ==================================================
+     GAME
+================================================== -->
 
 <section id="gamePage">
 
     <h2>
-        GUESS THE NUMBER
+        GUESS 45
     </h2>
+
+
+    <div class="gameStats">
+
+        <div class="statBox">
+            SCORE
+            <span id="score">0</span>
+        </div>
+
+        <div class="statBox">
+            COINS
+            <span id="coins">0</span>
+        </div>
+
+        <div class="statBox">
+            XP
+            <span id="xp">0</span>
+        </div>
+
+        <div class="statBox">
+            LEVEL
+            <span id="level">1</span>
+        </div>
+
+    </div>
 
 
     <div class="timer"
@@ -577,24 +872,25 @@ h2 {
     </div>
 
 
-    <p>
+    <div class="lives"
+         id="lives">
 
-        ROUND:
-        <span id="round">
-            1
-        </span>
+        ❤️ ❤️ ❤️
 
-    </p>
+    </div>
 
 
-    <p>
+    <div>
 
-        SCORE:
-        <span id="score">
-            0
-        </span>
+        ROUND
+        <span id="round">1</span>
 
-    </p>
+    </div>
+
+
+    <div id="comboText">
+        COMBO x1
+    </div>
 
 
     <input
@@ -602,7 +898,9 @@ h2 {
         type="number"
         min="1"
         max="100"
-        placeholder="1 - 100">
+        placeholder="1 - 100"
+        onkeydown="enterGuess(event)"
+    >
 
 
     <br>
@@ -618,6 +916,113 @@ h2 {
 
 
     <div id="message"></div>
+
+
+    <!-- FOUR CHOICES -->
+
+    <div class="sectionTitle">
+        QUICK GUESS
+    </div>
+
+
+    <div
+        class="choices"
+        id="choices">
+    </div>
+
+
+    <!-- POWERUPS -->
+
+    <div class="sectionTitle">
+        POWER-UPS
+    </div>
+
+
+    <div class="powerups">
+
+        <button
+            class="plus"
+            onclick="addTime()">
+
+            +5 SEC
+            <br>
+            🪙 10
+
+        </button>
+
+
+        <button
+            class="hint"
+            onclick="useHint()">
+
+            HINT
+            <br>
+            🪙 15
+
+        </button>
+
+
+        <button
+            class="free"
+            onclick="freeGuess()">
+
+            FREE GUESS
+            <br>
+            🪙 20
+
+        </button>
+
+    </div>
+
+
+    <!-- ADS PLACE -->
+
+    <div class="ads">
+
+        <div class="adsTitle">
+            WATCH AN AD TO GET BONUS
+        </div>
+
+        <button
+            class="adButton"
+            onclick="rewardAd('coins')">
+
+            🪙 +20 COINS
+
+        </button>
+
+
+        <button
+            class="adButton"
+            onclick="rewardAd('time')">
+
+            ⏱️ +10 SEC
+
+        </button>
+
+    </div>
+
+
+    <div id="gameOver">
+
+        <h2>
+            GAME OVER
+        </h2>
+
+        <p>
+            FINAL SCORE:
+            <b id="finalScore">0</b>
+        </p>
+
+        <button
+            class="start"
+            onclick="restartGame()">
+
+            PLAY AGAIN
+
+        </button>
+
+    </div>
 
 
     <button
@@ -637,30 +1042,109 @@ h2 {
 
 <script>
 
-let secretNumber;
+/* ==================================================
+   SAVE DATA
+================================================== */
+
+let savedData =
+    JSON.parse(
+        localStorage.getItem("guess45Data")
+    ) || {
+
+        coins: 0,
+        xp: 0,
+        level: 1,
+        best: 0
+
+    };
+
+
+let coins = savedData.coins;
+
+let xp = savedData.xp;
+
+let level = savedData.level;
+
+let best = savedData.best;
+
+
+/* ==================================================
+   GAME VARIABLES
+================================================== */
+
+let secretNumber = 0;
 
 let time = 45;
-
-let timerInterval;
 
 let score = 0;
 
 let round = 1;
 
-let coins = 0;
+let lives = 3;
 
-let best =
-    Number(
-        localStorage.getItem(
-            "guess45Best"
-        )
-    ) || 0;
+let combo = 1;
 
+let freeGuessAvailable = false;
 
-document.getElementById("best")
-    .textContent = best;
+let timerInterval = null;
+
+let gameRunning = false;
 
 
+/* ==================================================
+   SAVE
+================================================== */
+
+function saveData() {
+
+    localStorage.setItem(
+        "guess45Data",
+        JSON.stringify({
+
+            coins: coins,
+            xp: xp,
+            level: level,
+            best: best
+
+        })
+    );
+
+    updateHomeStats();
+}
+
+
+/* ==================================================
+   HOME STATS
+================================================== */
+
+function updateHomeStats() {
+
+    document.getElementById(
+        "homeCoins"
+    ).textContent = coins;
+
+
+    document.getElementById(
+        "homeXP"
+    ).textContent = xp;
+
+
+    document.getElementById(
+        "homeLevel"
+    ).textContent = level;
+
+
+    document.getElementById(
+        "homeBest"
+    ).textContent = best;
+}
+
+updateHomeStats();
+
+
+/* ==================================================
+   START
+================================================== */
 
 function startGame() {
 
@@ -674,16 +1158,38 @@ function startGame() {
     ).style.display = "block";
 
 
+    document.getElementById(
+        "gameOver"
+    ).style.display = "none";
+
+
     score = 0;
 
     round = 1;
+
+    lives = 3;
+
+    combo = 1;
+
+    gameRunning = true;
+
+
+    updateGameStats();
 
     newRound();
 }
 
 
+/* ==================================================
+   NEW ROUND
+================================================== */
 
 function newRound() {
+
+    if(!gameRunning) {
+        return;
+    }
+
 
     secretNumber =
         Math.floor(
@@ -705,8 +1211,8 @@ function newRound() {
 
 
     document.getElementById(
-        "score"
-    ).textContent = score;
+        "guessInput"
+    ).value = "";
 
 
     document.getElementById(
@@ -714,14 +1220,14 @@ function newRound() {
     ).textContent = "";
 
 
-    document.getElementById(
-        "guessInput"
-    ).value = "";
+    updateLives();
+
+    updateCombo();
+
+    createChoices();
 
 
-    clearInterval(
-        timerInterval
-    );
+    clearInterval(timerInterval);
 
 
     timerInterval =
@@ -732,8 +1238,16 @@ function newRound() {
 }
 
 
+/* ==================================================
+   TIMER
+================================================== */
 
 function timerTick() {
+
+    if(!gameRunning) {
+        return;
+    }
+
 
     time--;
 
@@ -750,30 +1264,65 @@ function timerTick() {
         );
 
 
-        document.getElementById(
-            "message"
-        ).textContent =
-            "TIME'S UP! 😈";
+        loseLife(
+            "TIME'S UP! 😈"
+        );
     }
 }
 
 
+/* ==================================================
+   GUESS
+================================================== */
 
 function makeGuess() {
 
-    let guess =
-        Number(
-            document.getElementById(
-                "guessInput"
-            ).value
+    if(!gameRunning) {
+        return;
+    }
+
+
+    if(freeGuessAvailable) {
+
+        freeGuessAvailable = false;
+
+    }
+
+
+    let input =
+        document.getElementById(
+            "guessInput"
         );
 
 
-    if(!guess) {
+    let guess =
+        Number(input.value);
+
+
+    if(
+        !guess ||
+        guess < 1 ||
+        guess > 100
+    ) {
+
+        document.getElementById(
+            "message"
+        ).textContent =
+            "ENTER A NUMBER FROM 1 TO 100";
 
         return;
     }
 
+
+    checkGuess(guess);
+}
+
+
+/* ==================================================
+   CHECK GUESS
+================================================== */
+
+function checkGuess(guess) {
 
     if(guess === secretNumber) {
 
@@ -782,63 +1331,80 @@ function makeGuess() {
         );
 
 
-        score += 100;
+        let reward =
+            100 * combo;
 
-        coins += 10;
+
+        score += reward;
+
+
+        coins += 5;
+
+
+        xp += 25;
+
+
+        if(
+            xp >= level * 100
+        ) {
+
+            xp -= level * 100;
+
+            level++;
+
+
+            document.getElementById(
+                "message"
+            ).textContent =
+                "🔥 LEVEL UP! LEVEL " +
+                level;
+
+        }
+        else {
+
+            document.getElementById(
+                "message"
+            ).textContent =
+                "🔥 CORRECT! +" +
+                reward +
+                " SCORE";
+        }
+
+
+        combo++;
+
 
         round++;
-
-
-        document.getElementById(
-            "score"
-        ).textContent = score;
-
-
-        document.getElementById(
-            "coins"
-        ).textContent = coins;
 
 
         if(score > best) {
 
             best = score;
-
-
-            localStorage.setItem(
-                "guess45Best",
-                best
-            );
-
-
-            document.getElementById(
-                "best"
-            ).textContent = best;
         }
 
 
-        document.getElementById(
-            "message"
-        ).textContent =
-            "🔥 CORRECT! +100 SCORE";
+        saveData();
+
+        updateGameStats();
 
 
         setTimeout(
             newRound,
-            900
+            1000
         );
 
 
+        return;
     }
 
-    else if(guess > secretNumber) {
+
+    if(guess > secretNumber) {
 
         document.getElementById(
             "message"
         ).textContent =
             "⬇️ LOWER!";
     }
-
-
     else {
 
         document.getElementById(
@@ -846,11 +1412,464 @@ function makeGuess() {
         ).textContent =
             "⬆️ HIGHER!";
     }
+
+
+    if(!freeGuessAvailable) {
+
+        combo = 1;
+    }
+
+
+    updateCombo();
 }
 
 
+/* ==================================================
+   QUICK CHOICES
+================================================== */
+
+function createChoices() {
+
+    let container =
+        document.getElementById(
+            "choices"
+        );
+
+
+    container.innerHTML = "";
+
+
+    let values = [];
+
+    values.push(secretNumber);
+
+
+    while(values.length < 4) {
+
+        let n =
+            Math.floor(
+                Math.random() * 100
+            ) + 1;
+
+
+        if(!values.includes(n)) {
+
+            values.push(n);
+        }
+    }
+
+
+    values.sort(
+        () => Math.random() - .5
+    );
+
+
+    values.forEach(
+        function(number) {
+
+            let button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "choice";
+
+
+            button.textContent =
+                number;
+
+
+            button.onclick =
+                function() {
+
+                    checkGuess(number);
+
+                };
+
+
+            container.appendChild(
+                button
+            );
+
+        }
+    );
+}
+
+
+/* ==================================================
+   LIVES
+================================================== */
+
+function updateLives() {
+
+    let text = "";
+
+    for(
+        let i = 0;
+        i < lives;
+        i++
+    ) {
+
+        text += "❤️ ";
+    }
+
+
+    for(
+        let i = lives;
+        i < 3;
+        i++
+    ) {
+
+        text += "🖤 ";
+    }
+
+
+    document.getElementById(
+        "lives"
+    ).textContent = text;
+}
+
+
+/* ==================================================
+   LOSE LIFE
+================================================== */
+
+function loseLife(reason) {
+
+    lives--;
+
+    combo = 1;
+
+    updateLives();
+
+    updateCombo();
+
+
+    document.getElementById(
+        "message"
+    ).textContent = reason;
+
+
+    if(lives <= 0) {
+
+        endGame();
+
+        return;
+    }
+
+
+    round++;
+
+    setTimeout(
+        newRound,
+        1200
+    );
+}
+
+
+/* ==================================================
+   COMBO
+================================================== */
+
+function updateCombo() {
+
+    document.getElementById(
+        "comboText"
+    ).textContent =
+        "🔥 COMBO x" +
+        combo;
+}
+
+
+/* ==================================================
+   +5 SECONDS
+================================================== */
+
+function addTime() {
+
+    if(coins < 10) {
+
+        showMessage(
+            "NOT ENOUGH COINS 🪙"
+        );
+
+        return;
+    }
+
+
+    coins -= 10;
+
+    time += 5;
+
+
+    document.getElementById(
+        "timer"
+    ).textContent = time;
+
+
+    saveData();
+
+    updateGameStats();
+
+
+    showMessage(
+        "⏱️ +5 SECONDS!"
+    );
+}
+
+
+/* ==================================================
+   HINT
+================================================== */
+
+function useHint() {
+
+    if(coins < 15) {
+
+        showMessage(
+            "NOT ENOUGH COINS 🪙"
+        );
+
+        return;
+    }
+
+
+    coins -= 15;
+
+
+    let difference =
+        Math.abs(
+            secretNumber - 50
+        );
+
+
+    let hint;
+
+
+    if(secretNumber < 50) {
+
+        hint =
+            "💡 THE NUMBER IS BELOW 50";
+
+    }
+    else {
+
+        hint =
+            "💡 THE NUMBER IS ABOVE 50";
+    }
+
+
+    if(difference <= 10) {
+
+        hint =
+            "💡 THE NUMBER IS CLOSE TO 50!";
+    }
+
+
+    showMessage(hint);
+
+
+    saveData();
+
+    updateGameStats();
+}
+
+
+/* ==================================================
+   FREE GUESS
+================================================== */
+
+function freeGuess() {
+
+    if(coins < 20) {
+
+        showMessage(
+            "NOT ENOUGH COINS 🪙"
+        );
+
+        return;
+    }
+
+
+    coins -= 20;
+
+    freeGuessAvailable = true;
+
+
+    saveData();
+
+    updateGameStats();
+
+
+    showMessage(
+        "🎁 NEXT GUESS IS FREE!"
+    );
+}
+
+
+/* ==================================================
+   REWARD AD PLACEHOLDER
+================================================== */
+
+function rewardAd(type) {
+
+    /*
+       مكان الإعلان الحقيقي.
+
+       حاليًا الأزرار تعمل كتجربة فقط.
+       لما نركب شبكة إعلانات فعلية،
+       المكافأة هتتمنح بعد مشاهدة الإعلان.
+    */
+
+
+    if(type === "coins") {
+
+        coins += 20;
+
+        showMessage(
+            "🪙 +20 COINS!"
+        );
+    }
+
+
+    if(type === "time") {
+
+        time += 10;
+
+        document.getElementById(
+            "timer"
+        ).textContent = time;
+
+        showMessage(
+            "⏱️ +10 SECONDS!"
+        );
+    }
+
+
+    saveData();
+
+    updateGameStats();
+}
+
+
+/* ==================================================
+   MESSAGE
+================================================== */
+
+function showMessage(text) {
+
+    document.getElementById(
+        "message"
+    ).textContent = text;
+}
+
+
+/* ==================================================
+   GAME STATS
+================================================== */
+
+function updateGameStats() {
+
+    document.getElementById(
+        "score"
+    ).textContent = score;
+
+
+    document.getElementById(
+        "coins"
+    ).textContent = coins;
+
+
+    document.getElementById(
+        "xp"
+    ).textContent = xp;
+
+
+    document.getElementById(
+        "level"
+    ).textContent = level;
+}
+
+
+/* ==================================================
+   ENTER KEY
+================================================== */
+
+function enterGuess(event) {
+
+    if(event.key === "Enter") {
+
+        makeGuess();
+    }
+}
+
+
+/* ==================================================
+   GAME OVER
+================================================== */
+
+function endGame() {
+
+    gameRunning = false;
+
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent = score;
+
+
+    document.getElementById(
+        "gameOver"
+    ).style.display = "block";
+
+
+    saveData();
+}
+
+
+/* ==================================================
+   RESTART
+================================================== */
+
+function restartGame() {
+
+    document.getElementById(
+        "gameOver"
+    ).style.display = "none";
+
+
+    score = 0;
+
+    round = 1;
+
+    lives = 3;
+
+    combo = 1;
+
+    gameRunning = true;
+
+
+    updateGameStats();
+
+    newRound();
+}
+
+
+/* ==================================================
+   BACK TO MENU
+================================================== */
 
 function backToMenu() {
+
+    gameRunning = false;
+
 
     clearInterval(
         timerInterval
@@ -865,10 +1884,12 @@ function backToMenu() {
     document.getElementById(
         "homePage"
     ).style.display = "block";
+
+
+    updateHomeStats();
 }
 
 </script>
-
 
 </body>
 
