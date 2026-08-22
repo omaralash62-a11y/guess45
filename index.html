@@ -1,54 +1,312 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>GUESS 45</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="description"
+content="GUESS 45 - The 45 Second Challenge">
 
-    <title>GUESS 45</title>
+<style>
+* {
+    box-sizing: border-box;
+}
 
-    <meta name="description"
-          content="Play GUESS 45 online. Guess the secret number before the 45 second timer runs out, earn coins, gain XP and survive as many rounds as possible.">
+html,
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+}
 
-    <meta name="robots"
-          content="index, follow">
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
 
-    <meta name="keywords"
-          content="GUESS 45, Guess 45 game, number guessing game, online game, 45 second challenge">
+    font-family: Arial, sans-serif;
+    color: white;
 
-    <link rel="canonical"
-          href="https://omaralash62-a11y.github.io/guess45/">
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(140,0,0,.45),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(80,0,90,.25),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #020002,
+            #090008,
+            #000000
+        );
+}
 
-    <meta property="og:title"
-          content="GUESS 45 - The 45 Second Challenge">
+/* RED LIGHT */
 
-    <meta property="og:description"
-          content="Play the GUESS 45 number guessing game online.">
+body::before {
+    content: "";
 
-    <meta property="og:type"
-          content="website">
+    position: fixed;
 
-    <meta property="og:url"
-          content="https://omaralash62-a11y.github.io/guess45/">
+    width: 600px;
+    height: 600px;
 
-    <!-- GAME STYLE -->
-    <link rel="stylesheet" href="style.css">
+    left: 50%;
+    top: 35%;
 
+    transform: translate(-50%,-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,0,0,.22),
+            transparent 70%
+        );
+
+    filter: blur(30px);
+
+    animation: pulse 3s infinite alternate;
+
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    from {
+        opacity: .3;
+        transform:
+            translate(-50%,-50%)
+            scale(.85);
+    }
+
+    to {
+        opacity: .8;
+        transform:
+            translate(-50%,-50%)
+            scale(1.15);
+    }
+}
+
+.game {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 30px 15px;
+
+    text-align: center;
+}
+
+#menu {
+    max-width: 600px;
+    margin: auto;
+    padding-top: 45px;
+}
+
+h1 {
+    margin: 0;
+
+    font-size:
+        clamp(50px,14vw,85px);
+
+    font-weight: 900;
+
+    letter-spacing: 5px;
+
+    color: #ff1010;
+
+    text-shadow:
+        0 0 5px red,
+        0 0 15px red,
+        0 0 35px #900,
+        0 0 70px rgba(255,0,0,.6);
+
+    animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+
+    0%,18%,20%,60%,62%,100% {
+        opacity: 1;
+    }
+
+    19%,61% {
+        opacity: .35;
+    }
+}
+
+h2 {
+    color: #ff8a8a;
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 12px red;
+}
+
+.stats {
+    margin: 30px auto;
+
+    padding: 18px;
+
+    max-width: 340px;
+
+    background: rgba(0,0,0,.7);
+
+    border:
+        1px solid rgba(255,0,0,.4);
+
+    border-radius: 12px;
+
+    color: #ffd34e;
+
+    box-shadow:
+        0 0 25px rgba(255,0,0,.25);
+}
+
+button {
+    border: none;
+
+    border-radius: 10px;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: .15s;
+}
+
+button:active {
+    transform: scale(.94);
+}
+
+.start {
+    width: min(330px,90%);
+
+    height: 75px;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    background:
+        linear-gradient(
+            #b50000,
+            #480000
+        );
+
+    box-shadow:
+        0 0 25px rgba(255,0,0,.5);
+}
+
+.timer {
+    font-size:
+        clamp(75px,20vw,120px);
+
+    font-weight: 900;
+
+    color: #ff1111;
+
+    text-shadow:
+        0 0 8px red,
+        0 0 25px red,
+        0 0 60px red;
+
+    animation:
+        timerPulse 1s infinite alternate;
+}
+
+@keyframes timerPulse {
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.06);
+    }
+}
+
+input {
+    width: min(340px,90%);
+
+    height: 65px;
+
+    border-radius: 10px;
+
+    border: 1px solid #700000;
+
+    outline: none;
+
+    background: #050505;
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 25px;
+}
+
+.guess {
+    width: 240px;
+
+    height: 65px;
+
+    margin: 20px auto;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    background:
+        linear-gradient(
+            #a00000,
+            #420000
+        );
+
+    box-shadow:
+        0 0 20px rgba(255,0,0,.45);
+}
+
+.message {
+    min-height: 30px;
+
+    margin: 15px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+#gameScreen {
+    display: none;
+}
+
+@media(max-width:500px) {
+
+    h1 {
+        font-size: 55px;
+    }
+
+    .game {
+        padding-top: 15px;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
 <div class="game">
-
-
-    <!-- ====================== -->
-    <!-- MENU -->
-    <!-- ====================== -->
 
     <div id="menu">
 
@@ -60,26 +318,22 @@
 
         <div class="stats">
 
-            LEVEL
-            <span id="menuLevel">1</span>
+            <div>
+                LEVEL:
+                <span id="level">1</span>
+            </div>
 
-            &nbsp;&nbsp;
+            <div>
+                COINS:
+                <span id="coins">0</span>
+            </div>
 
-            XP
-            <span id="menuXP">0</span>
-
-            <br>
-
-            COINS
-            <span id="menuCoins">0</span>
-
-            &nbsp;&nbsp;
-
-            BEST
-            <span id="menuBest">0</span>
+            <div>
+                BEST:
+                <span id="best">0</span>
+            </div>
 
         </div>
-
 
         <button
             class="start"
@@ -89,99 +343,34 @@
 
         </button>
 
-
-        <p class="warning">
-
-            GUESS THE NUMBER<br>
-            SURVIVE 45 SECONDS
-
-        </p>
-
     </div>
 
 
-    <!-- ====================== -->
-    <!-- GAME -->
-    <!-- ====================== -->
+    <div id="gameScreen">
 
-    <div
-        id="gameScreen"
-        class="hidden">
+        <h2>GUESS THE NUMBER</h2>
 
-
-        <div class="top">
-
-            <div>
-
-                ROUND
-                <span id="round">1</span>
-
-            </div>
-
-
-            <div>
-
-                SCORE:
-                <span id="score">0</span>
-
-            </div>
-
-        </div>
-
-
-        <div class="coins">
-
-            COINS:
-            <span id="coins">0</span>
-
-        </div>
-
-
-        <div
-            class="lives"
-            id="lives">
-
-            LIFE&nbsp;&nbsp;
-            LIFE&nbsp;&nbsp;
-            LIFE
-
-        </div>
-
-
-        <div
-            class="combo"
-            id="combo">
-
-            COMBO x0
-
-        </div>
-
-
-        <div
-            class="timer"
-            id="timer">
-
+        <div class="timer" id="timer">
             45
-
         </div>
 
-
-        <div
-            class="message"
-            id="message">
-
-            GUESS THE NUMBER!
-
+        <div>
+            Round:
+            <span id="round">
+                1
+            </span>
         </div>
 
+        <br>
 
         <input
             id="guessInput"
             type="number"
             min="1"
             max="100"
-            placeholder="ENTER 1 - 100">
+            placeholder="1 - 100">
 
+        <br>
 
         <button
             class="guess"
@@ -191,108 +380,23 @@
 
         </button>
 
-
-        <!-- POWER UPS -->
-
-        <div class="powerups">
-
-
-            <button
-                class="plus"
-                onclick="plusTime()">
-
-                +10 SEC<br>
-                10 COINS
-
-            </button>
-
-
-            <button
-                class="hint"
-                onclick="useHint()">
-
-                HINT<br>
-                15 COINS
-
-            </button>
-
-
-            <button
-                class="free"
-                onclick="useFreeGuess()">
-
-                FREE GUESS<br>
-                20 COINS
-
-            </button>
-
-
-        </div>
-
-
-        <!-- ADS -->
-
-        <div class="ads">
-
-
-            <button
-                onclick="watchAdCoins()">
-
-                WATCH AD<br>
-                +10 COINS
-
-            </button>
-
-
-            <button
-                onclick="watchAdTime()">
-
-                WATCH AD<br>
-                +10 SEC
-
-            </button>
-
-
-        </div>
-
-
-        <!-- FOUR CHOICES -->
-
         <div
-            id="choices"
-            class="choices hidden">
-
-
-            <button
-                onclick="choiceSelected(this)">
-                ?
-            </button>
-
-
-            <button
-                onclick="choiceSelected(this)">
-                ?
-            </button>
-
-
-            <button
-                onclick="choiceSelected(this)">
-                ?
-            </button>
-
-
-            <button
-                onclick="choiceSelected(this)">
-                ?
-            </button>
-
-
+            class="message"
+            id="message">
         </div>
 
+        <div>
+            Score:
+            <span id="score">
+                0
+            </span>
+        </div>
+
+        <br>
 
         <button
-            class="menuButton"
-            onclick="backToMenu()">
+            class="start"
+            onclick="location.reload()">
 
             MENU
 
@@ -300,48 +404,161 @@
 
     </div>
 
-
 </div>
 
 
-<!-- ====================== -->
-<!-- SEO CONTENT -->
-<!-- ====================== -->
+<script>
 
-<section
-    style="
-        max-width:700px;
-        margin:50px auto;
-        padding:20px;
-        text-align:center;
-        color:#ddd;
-    ">
+let secretNumber;
 
-    <h2>Play GUESS 45 Online</h2>
+let time = 45;
 
-    <p>
-        GUESS 45 is an online number guessing challenge.
-        Find the secret number between 1 and 100 before
-        the timer reaches zero.
-    </p>
+let timerInterval;
 
-    <h2>How to Play</h2>
+let score = 0;
 
-    <p>
-        Enter a number from 1 to 100 and press GUESS.
-        The game tells you whether you need to guess
-        higher or lower.
-    </p>
+let round = 1;
 
-</section>
+let coins = 0;
+
+let best =
+    Number(
+        localStorage.getItem("guess45Best")
+    ) || 0;
 
 
-<!-- ====================== -->
-<!-- IMPORTANT: GAME ENGINE -->
-<!-- ====================== -->
+document.getElementById("best")
+    .textContent = best;
 
-<script src="./game.js"></script>
+
+function startGame() {
+
+    document.getElementById("menu")
+        .style.display = "none";
+
+    document.getElementById("gameScreen")
+        .style.display = "block";
+
+    newRound();
+}
+
+
+function newRound() {
+
+    secretNumber =
+        Math.floor(
+            Math.random() * 100
+        ) + 1;
+
+    time = 45;
+
+    document.getElementById("timer")
+        .textContent = time;
+
+    document.getElementById("round")
+        .textContent = round;
+
+    document.getElementById("guessInput")
+        .value = "";
+
+    document.getElementById("message")
+        .textContent = "";
+
+    clearInterval(timerInterval);
+
+    timerInterval =
+        setInterval(timerTick,1000);
+}
+
+
+function timerTick() {
+
+    time--;
+
+    document.getElementById("timer")
+        .textContent = time;
+
+    if(time <= 0) {
+
+        clearInterval(timerInterval);
+
+        document.getElementById("message")
+            .textContent =
+            "TIME'S UP! 😈";
+
+    }
+}
+
+
+function makeGuess() {
+
+    let guess =
+        Number(
+            document.getElementById(
+                "guessInput"
+            ).value
+        );
+
+    if(!guess) return;
+
+    if(guess === secretNumber) {
+
+        clearInterval(timerInterval);
+
+        score += 100;
+
+        coins += 10;
+
+        round++;
+
+        document.getElementById("score")
+            .textContent = score;
+
+        document.getElementById("coins")
+            .textContent = coins;
+
+        if(score > best) {
+
+            best = score;
+
+            localStorage.setItem(
+                "guess45Best",
+                best
+            );
+
+            document.getElementById("best")
+                .textContent = best;
+        }
+
+        document.getElementById("message")
+            .textContent =
+            "🔥 CORRECT! +100 SCORE";
+
+        setTimeout(
+            newRound,
+            1000
+        );
+
+    }
+
+    else if(guess > secretNumber) {
+
+        document.getElementById("message")
+            .textContent =
+            "⬇️ LOWER!";
+
+    }
+
+    else {
+
+        document.getElementById("message")
+            .textContent =
+            "⬆️ HIGHER!";
+
+    }
+}
+
+</script>
 
 </body>
-
 </html>
