@@ -1,1014 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GUESS 45</title>
-
-<style>
-
-/* =========================
-   RESET
-========================= */
-
-* {
-    box-sizing: border-box;
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    min-height: 100%;
-}
-
-body {
-    min-height: 100vh;
-    overflow-x: hidden;
-
-    color: white;
-    font-family: Arial, sans-serif;
-
-    background:
-        radial-gradient(
-            ellipse at 50% 35%,
-            rgba(120,0,0,.45),
-            transparent 32%
-        ),
-        radial-gradient(
-            ellipse at 20% 80%,
-            rgba(90,0,100,.30),
-            transparent 35%
-        ),
-        linear-gradient(
-            180deg,
-            #020002 0%,
-            #080008 50%,
-            #010001 100%
-        );
-
-    box-shadow:
-        inset 0 0 180px 70px rgba(0,0,0,.9);
-}
-
-
-/* =========================
-   HORROR LIGHT
-========================= */
-
-body::before {
-    content: "";
-
-    position: fixed;
-
-    width: 650px;
-    height: 650px;
-
-    left: 50%;
-    top: 30%;
-
-    transform:
-        translate(-50%,-50%);
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,0,0,.22),
-            rgba(100,0,0,.08) 35%,
-            transparent 70%
-        );
-
-    filter: blur(30px);
-
-    animation: redPulse 3s infinite alternate;
-
-    pointer-events: none;
-
-    z-index: 0;
-}
-
-@keyframes redPulse {
-
-    from {
-        opacity: .35;
-
-        transform:
-            translate(-50%,-50%)
-            scale(.85);
-    }
-
-    to {
-        opacity: .8;
-
-        transform:
-            translate(-50%,-50%)
-            scale(1.15);
-    }
-}
-
-
-/* =========================
-   MAIN
-========================= */
-
-.game {
-
-    position: relative;
-
-    z-index: 2;
-
-    width: 100%;
-
-    min-height: 100vh;
-
-    padding: 20px;
-
-    text-align: center;
-}
-
-
-/* =========================
-   HOME
-========================= */
-
-#homePage {
-
-    width: 100%;
-
-    max-width: 600px;
-
-    margin: auto;
-
-    padding-top: 65px;
-}
-
-
-/* =========================
-   TITLE
-========================= */
-
-h1 {
-
-    margin: 0;
-
-    font-size:
-        clamp(50px,14vw,85px);
-
-    font-weight: 900;
-
-    letter-spacing: 5px;
-
-    color: #ff1010;
-
-    text-shadow:
-        0 0 5px #ff0000,
-        0 0 15px #ff0000,
-        0 0 35px #9b0000,
-        0 0 70px rgba(255,0,0,.5);
-
-    animation: horrorTitle 3s infinite;
-}
-
-@keyframes horrorTitle {
-
-    0%,
-    18%,
-    20%,
-    60%,
-    62%,
-    100% {
-        opacity: 1;
-    }
-
-    19%,
-    61% {
-        opacity: .35;
-    }
-}
-
-h2 {
-
-    color: #ff8a8a;
-
-    letter-spacing: 3px;
-
-    text-shadow:
-        0 0 12px red;
-}
-
-
-/* =========================
-   HOME STATS
-========================= */
-
-.stats {
-
-    margin: 30px auto;
-
-    padding: 18px;
-
-    max-width: 350px;
-
-    background:
-        rgba(0,0,0,.65);
-
-    border:
-        1px solid rgba(255,0,0,.35);
-
-    border-radius: 12px;
-
-    color: #ffd34e;
-
-    box-shadow:
-        0 0 25px rgba(255,0,0,.2);
-
-    line-height: 1.8;
-}
-
-
-/* =========================
-   BUTTON
-========================= */
-
-button {
-
-    border: none;
-
-    border-radius: 10px;
-
-    color: white;
-
-    cursor: pointer;
-
-    transition: .15s;
-}
-
-button:hover {
-    filter: brightness(1.3);
-}
-
-button:active {
-    transform: scale(.94);
-}
-
-
-/* =========================
-   START
-========================= */
-
-.start {
-
-    width:
-        min(330px,90%);
-
-    height: 75px;
-
-    font-size: 25px;
-
-    font-weight: bold;
-
-    background:
-        linear-gradient(
-            180deg,
-            #b50000,
-            #480000
-        );
-
-    box-shadow:
-        0 0 20px rgba(255,0,0,.5);
-}
-
-
-/* =========================
-   GAME PAGE
-========================= */
-
-#gamePage {
-
-    display: none;
-
-    width: 100%;
-
-    max-width: 600px;
-
-    margin: auto;
-
-    padding-top: 25px;
-}
-
-
-/* =========================
-   STATS
-========================= */
-
-.gameStats {
-
-    display: flex;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 8px;
-
-    margin: 15px auto;
-}
-
-.statBox {
-
-    min-width: 105px;
-
-    padding: 10px 8px;
-
-    background:
-        rgba(0,0,0,.75);
-
-    border:
-        1px solid rgba(255,0,0,.3);
-
-    border-radius: 10px;
-
-    font-size: 13px;
-
-    color: #ddd;
-}
-
-.statBox span {
-
-    display: block;
-
-    margin-top: 4px;
-
-    color: #ffd34e;
-
-    font-size: 18px;
-
-    font-weight: bold;
-}
-
-
-/* =========================
-   TIMER
-========================= */
-
-.timer {
-
-    margin-top: 5px;
-
-    font-size:
-        clamp(75px,20vw,120px);
-
-    font-weight: 900;
-
-    color: #ff1111;
-
-    text-shadow:
-        0 0 8px red,
-        0 0 25px red,
-        0 0 60px rgba(255,0,0,.6);
-
-    animation:
-        timerPulse 1s infinite alternate;
-}
-
-@keyframes timerPulse {
-
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(1.06);
-    }
-}
-
-
-/* =========================
-   LIVES
-========================= */
-
-.lives {
-
-    margin: 5px;
-
-    font-size: 24px;
-
-    letter-spacing: 5px;
-
-    color: #ff2020;
-
-    text-shadow:
-        0 0 10px red;
-}
-
-
-/* =========================
-   COMBO
-========================= */
-
-#comboText {
-
-    min-height: 28px;
-
-    color: #ff9d00;
-
-    font-weight: bold;
-
-    text-shadow:
-        0 0 10px orange;
-}
-
-
-/* =========================
-   INPUT
-========================= */
-
-#guessInput {
-
-    width:
-        min(340px,90%);
-
-    height: 65px;
-
-    margin-top: 10px;
-
-    border-radius: 10px;
-
-    border:
-        1px solid #700000;
-
-    outline: none;
-
-    background:
-        rgba(0,0,0,.85);
-
-    color: white;
-
-    text-align: center;
-
-    font-size: 25px;
-
-    box-shadow:
-        0 0 15px rgba(255,0,0,.2);
-}
-
-#guessInput:focus {
-
-    border-color: red;
-
-    box-shadow:
-        0 0 25px rgba(255,0,0,.5);
-}
-
-
-/* =========================
-   GUESS
-========================= */
-
-.guess {
-
-    width: 240px;
-
-    height: 65px;
-
-    margin: 18px auto;
-
-    font-size: 24px;
-
-    font-weight: bold;
-
-    background:
-        linear-gradient(
-            180deg,
-            #a00000,
-            #420000
-        );
-
-    box-shadow:
-        0 0 20px rgba(255,0,0,.45);
-}
-
-
-/* =========================
-   MESSAGE
-========================= */
-
-#message {
-
-    min-height: 35px;
-
-    margin: 10px;
-
-    font-size: 20px;
-
-    font-weight: bold;
-}
-
-
-/* =========================
-   FOUR CHOICES
-========================= */
-
-.choices {
-
-    display: none;
-
-    grid-template-columns:
-        repeat(2,145px);
-
-    justify-content: center;
-
-    gap: 12px;
-
-    margin: 20px auto;
-
-    animation: choicesAppear .5s ease;
-}
-
-@keyframes choicesAppear {
-
-    from {
-        opacity: 0;
-        transform: scale(.7);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.choice {
-
-    height: 60px;
-
-    font-size: 21px;
-
-    font-weight: bold;
-
-    background:
-        linear-gradient(
-            180deg,
-            #900000,
-            #350000
-        );
-
-    box-shadow:
-        0 0 18px rgba(255,0,0,.4);
-}
-
-
-/* =========================
-   POWERUPS
-========================= */
-
-.sectionTitle {
-
-    margin-top: 25px;
-
-    color: #aaa;
-
-    font-size: 13px;
-
-    letter-spacing: 2px;
-}
-
-.powerups {
-
-    display: flex;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
-
-    margin-top: 10px;
-}
-
-.powerups button {
-
-    width: 110px;
-
-    min-height: 60px;
-
-    font-size: 12px;
-
-    font-weight: bold;
-}
-
-.plus {
-    background: #07551d;
-}
-
-.hint {
-    background: #102b8c;
-}
-
-.free {
-    background: #681268;
-}
-
-
-/* =========================
-   ADS
-========================= */
-
-.ads {
-
-    margin:
-        25px auto 10px;
-
-    padding: 15px;
-
-    max-width: 400px;
-
-    border:
-        1px dashed rgba(255,130,0,.45);
-
-    border-radius: 12px;
-
-    background:
-        rgba(50,20,0,.25);
-}
-
-.adsTitle {
-
-    color: #ff9d32;
-
-    font-size: 12px;
-
-    margin-bottom: 10px;
-}
-
-.adButton {
-
-    width: 145px;
-
-    height: 55px;
-
-    margin: 4px;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
-    background:
-        linear-gradient(
-            180deg,
-            #d26000,
-            #642700
-        );
-
-    box-shadow:
-        0 0 15px rgba(255,100,0,.35);
-}
-
-
-/* =========================
-   GAME OVER
-========================= */
-
-#gameOver {
-
-    display: none;
-
-    margin: 25px auto;
-
-    padding: 20px;
-
-    max-width: 350px;
-
-    background:
-        rgba(0,0,0,.85);
-
-    border:
-        1px solid red;
-
-    border-radius: 12px;
-
-    box-shadow:
-        0 0 25px rgba(255,0,0,.4);
-}
-
-
-/* =========================
-   MENU
-========================= */
-
-.menuButton {
-
-    margin-top: 20px;
-
-    padding: 13px 28px;
-
-    background: #222;
-
-    font-weight: bold;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:500px) {
-
-    #homePage {
-        padding-top: 45px;
-    }
-
-    .choices {
-        grid-template-columns:
-            repeat(2,130px);
-    }
-
-    .choice {
-        width: 130px;
-    }
-
-    .powerups button {
-        width: 105px;
-    }
-}
-
-</style>
-</head>
-
-
-<body>
-
-<div class="game">
-
-
-<!-- =========================
-     HOME PAGE
-========================= -->
-
-<section id="homePage">
-
-    <h1>GUESS 45</h1>
-
-    <h2>
-        THE 45 SECOND CHALLENGE
-    </h2>
-
-    <div class="stats">
-
-        LEVEL:
-        <span id="homeLevel">1</span>
-
-        <br>
-
-        XP:
-        <span id="homeXP">0</span>
-
-        <br>
-
-        COINS:
-        <span id="homeCoins">0</span>
-
-        <br>
-
-        BEST:
-        <span id="homeBest">0</span>
-
-    </div>
-
-
-    <button
-        class="start"
-        onclick="startGame()">
-
-        START GAME
-
-    </button>
-
-</section>
-
-
-
-<!-- =========================
-     GAME PAGE
-========================= -->
-
-<section id="gamePage">
-
-    <h2>GUESS 45</h2>
-
-
-    <div class="gameStats">
-
-        <div class="statBox">
-            SCORE
-            <span id="score">0</span>
-        </div>
-
-        <div class="statBox">
-            COINS
-            <span id="coins">0</span>
-        </div>
-
-        <div class="statBox">
-            XP
-            <span id="xp">0</span>
-        </div>
-
-        <div class="statBox">
-            LEVEL
-            <span id="level">1</span>
-        </div>
-
-    </div>
-
-
-    <div class="timer" id="timer">
-        45
-    </div>
-
-
-    <div class="lives" id="lives">
-        ❤️ ❤️ ❤️
-    </div>
-
-
-    <div>
-        ROUND:
-        <span id="round">1</span>
-    </div>
-
-
-    <div id="comboText">
-        🔥 COMBO x1
-    </div>
-
-
-    <input
-        id="guessInput"
-        type="number"
-        min="1"
-        max="100"
-        placeholder="1 - 100"
-        onkeydown="enterGuess(event)"
-    >
-
-
-    <br>
-
-
-    <button
-        class="guess"
-        onclick="makeGuess()">
-
-        GUESS
-
-    </button>
-
-
-    <div id="message"></div>
-
-
-    <!-- =====================
-         CHOICES
-    ====================== -->
-
-    <div
-        class="sectionTitle"
-        id="choiceTitle"
-        style="display:none;">
-
-        TIME IS OVER — CHOOSE!
-
-    </div>
-
-
-    <div
-        class="choices"
-        id="choices">
-
-    </div>
-
-
-    <!-- =====================
-         POWERUPS
-    ====================== -->
-
-    <div class="sectionTitle">
-        POWER-UPS
-    </div>
-
-
-    <div class="powerups">
-
-        <button
-            class="plus"
-            onclick="addTime()">
-
-            +5 SEC
-            <br>
-            🪙 10
-
-        </button>
-
-
-        <button
-            class="hint"
-            onclick="useHint()">
-
-            HINT
-            <br>
-            🪙 15
-
-        </button>
-
-
-        <button
-            class="free"
-            onclick="freeGuess()">
-
-            FREE GUESS
-            <br>
-            🪙 20
-
-        </button>
-
-    </div>
-
-
-    <!-- =====================
-         ADS
-    ====================== -->
-
-    <div class="ads">
-
-        <div class="adsTitle">
-            WATCH AN AD TO GET BONUS
-        </div>
-
-
-        <button
-            class="adButton"
-            onclick="rewardAd('coins')">
-
-            🪙 +20 COINS
-
-        </button>
-
-
-        <button
-            class="adButton"
-            onclick="rewardAd('time')">
-
-            ⏱️ +10 SEC
-
-        </button>
-
-    </div>
-
-
-    <!-- =====================
-         GAME OVER
-    ====================== -->
-
-    <div id="gameOver">
-
-        <h2>
-            GAME OVER
-        </h2>
-
-        <p>
-            FINAL SCORE:
-            <b id="finalScore">0</b>
-        </p>
-
-
-        <button
-            class="start"
-            onclick="restartGame()">
-
-            PLAY AGAIN
-
-        </button>
-
-    </div>
-
-
-    <button
-        class="menuButton"
-        onclick="backToMenu()">
-
-        BACK TO MENU
-
-    </button>
-
-</section>
-
-</div>
-
-
-
 <script>
 
 /* =========================
@@ -1016,16 +5,12 @@ button:active {
 ========================= */
 
 let savedData =
-    JSON.parse(
-        localStorage.getItem("guess45Data")
-    ) || {
-
+    JSON.parse(localStorage.getItem("guess45Data")) || {
         coins: 0,
         xp: 0,
         level: 1,
         best: 0
     };
-
 
 let coins = savedData.coins;
 let xp = savedData.xp;
@@ -1038,29 +23,58 @@ let best = savedData.best;
 ========================= */
 
 let secretNumber = 0;
-
 let time = 45;
-
 let score = 0;
-
 let round = 1;
-
 let lives = 3;
-
 let combo = 1;
-
 let timerInterval = null;
-
 let gameRunning = false;
 
-
-/*
-   مهم:
-   الاختيارات لا تظهر إلا
-   عندما الوقت يخلص.
-*/
-
 let choicesVisible = false;
+
+let currentChallenge = "NORMAL";
+let challengeType = "normal";
+let dangerLevel = 1;
+
+let guessesThisRound = 0;
+let roundRewardMultiplier = 1;
+
+
+/* =========================
+   CREATE CHALLENGE UI
+========================= */
+
+function createChallengeUI() {
+
+    if(document.getElementById("challengeBox")) {
+        return;
+    }
+
+    let comboBox =
+        document.getElementById("comboText");
+
+    let box =
+        document.createElement("div");
+
+    box.id = "challengeBox";
+
+    box.style.margin = "15px auto";
+    box.style.padding = "12px";
+    box.style.maxWidth = "360px";
+    box.style.border = "1px solid rgba(255,0,0,.5)";
+    box.style.borderRadius = "12px";
+    box.style.background = "rgba(20,0,0,.75)";
+    box.style.boxShadow = "0 0 20px rgba(255,0,0,.25)";
+    box.style.fontWeight = "bold";
+    box.style.fontSize = "14px";
+
+    box.innerHTML =
+        "⚠️ DANGER LEVEL <span id='dangerLevel'>1</span><br>" +
+        "<span id='challengeName'>NORMAL ROUND</span>";
+
+    comboBox.after(box);
+}
 
 
 /* =========================
@@ -1072,12 +86,10 @@ function saveData() {
     localStorage.setItem(
         "guess45Data",
         JSON.stringify({
-
             coins: coins,
             xp: xp,
             level: level,
             best: best
-
         })
     );
 
@@ -1091,60 +103,34 @@ function saveData() {
 
 function updateHomeStats() {
 
-    document.getElementById(
-        "homeCoins"
-    ).textContent = coins;
-
-
-    document.getElementById(
-        "homeXP"
-    ).textContent = xp;
-
-
-    document.getElementById(
-        "homeLevel"
-    ).textContent = level;
-
-
-    document.getElementById(
-        "homeBest"
-    ).textContent = best;
+    document.getElementById("homeCoins").textContent = coins;
+    document.getElementById("homeXP").textContent = xp;
+    document.getElementById("homeLevel").textContent = level;
+    document.getElementById("homeBest").textContent = best;
 }
 
 updateHomeStats();
 
 
 /* =========================
-   START
+   START GAME
 ========================= */
 
 function startGame() {
 
-    document.getElementById(
-        "homePage"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "gamePage"
-    ).style.display = "block";
-
-
-    document.getElementById(
-        "gameOver"
-    ).style.display = "none";
-
+    document.getElementById("homePage").style.display = "none";
+    document.getElementById("gamePage").style.display = "block";
+    document.getElementById("gameOver").style.display = "none";
 
     score = 0;
-
     round = 1;
-
     lives = 3;
-
     combo = 1;
+    dangerLevel = 1;
 
     gameRunning = true;
 
+    createChallengeUI();
 
     updateGameStats();
 
@@ -1162,29 +148,148 @@ function newRound() {
         return;
     }
 
-
     secretNumber =
-        Math.floor(
-            Math.random() * 100
-        ) + 1;
-
-
-    time = 45;
+        Math.floor(Math.random() * 100) + 1;
 
     choicesVisible = false;
 
+    guessesThisRound = 0;
 
-    /* إخفاء الاختيارات */
+    roundRewardMultiplier = 1;
+
+    /* =====================
+       DANGER LEVEL
+    ===================== */
+
+    dangerLevel =
+        Math.min(
+            10,
+            Math.floor((round - 1) / 2) + 1
+        );
+
+
+    /* =====================
+       BOSS ROUND
+    ===================== */
+
+    if(round % 5 === 0) {
+
+        challengeType = "boss";
+
+        currentChallenge =
+            "💀 BOSS ROUND — SURVIVE!";
+
+        time = 25;
+
+        roundRewardMultiplier = 3;
+
+    }
+
+    else {
+
+        let challenges = [
+            {
+                type: "normal",
+                name: "😈 NORMAL — NO MERCY",
+                time: 45,
+                multiplier: 1
+            },
+
+            {
+                type: "fast",
+                name: "⚡ SPEED DEMON — 30 SECONDS",
+                time: 30,
+                multiplier: 1.5
+            },
+
+            {
+                type: "nohint",
+                name: "🚫 NO HINT — YOU'RE ALONE",
+                time: 45,
+                multiplier: 1.5
+            },
+
+            {
+                type: "oneshot",
+                name: "🎯 ONE SHOT — DON'T MISS",
+                time: 35,
+                multiplier: 2
+            },
+
+            {
+                type: "double",
+                name: "💰 DOUBLE REWARD",
+                time: 40,
+                multiplier: 2
+            }
+        ];
+
+
+        /* كلما زاد الـDanger
+           نخلي الجولات أصعب */
+
+        let available =
+            challenges.slice(
+                0,
+                Math.min(
+                    challenges.length,
+                    2 + dangerLevel
+                )
+            );
+
+
+        let selected =
+            available[
+                Math.floor(
+                    Math.random() *
+                    available.length
+                )
+            ];
+
+
+        challengeType =
+            selected.type;
+
+        currentChallenge =
+            selected.name;
+
+        time =
+            selected.time;
+
+        roundRewardMultiplier =
+            selected.multiplier;
+    }
+
+
+    /* =====================
+       UPDATE CHALLENGE UI
+    ===================== */
+
+    document.getElementById(
+        "dangerLevel"
+    ).textContent = dangerLevel;
+
+    document.getElementById(
+        "challengeName"
+    ).textContent = currentChallenge;
+
+
+    /* =====================
+       HIDE CHOICES
+    ===================== */
 
     document.getElementById(
         "choices"
     ).style.display = "none";
 
-
     document.getElementById(
         "choiceTitle"
     ).style.display = "none";
 
+
+    /* =====================
+       TIMER
+    ===================== */
 
     document.getElementById(
         "timer"
@@ -1203,12 +308,13 @@ function newRound() {
 
     document.getElementById(
         "message"
-    ).textContent = "";
+    ).textContent =
+        currentChallenge;
 
 
     updateLives();
-
     updateCombo();
+    updateGameStats();
 
     createChoices();
 
@@ -1234,30 +340,37 @@ function timerTick() {
         return;
     }
 
-
     time--;
-
 
     document.getElementById(
         "timer"
     ).textContent = time;
 
 
-    /* =====================
-       TIME IS OVER
-    ===================== */
+    /* خطر أكبر */
+
+    if(time <= 10 && time > 0) {
+
+        document.getElementById(
+            "timer"
+        ).style.color = "#ff0000";
+    }
+
+
+    /* TIME OVER */
 
     if(time <= 0) {
 
-        clearInterval(
-            timerInterval
-        );
+        clearInterval(timerInterval);
 
+        time = 0;
+
+        document.getElementById(
+            "timer"
+        ).textContent = "0";
 
         choicesVisible = true;
 
-
-        /* إظهار الاختيارات */
 
         document.getElementById(
             "choices"
@@ -1272,14 +385,9 @@ function timerTick() {
         document.getElementById(
             "message"
         ).textContent =
-            "⏰ TIME'S UP! CHOOSE NOW! 😈";
-
-
-        /*
-           هنا اللاعب أمامه
-           الاختيارات الأربعة
-        */
-
+            challengeType === "boss"
+            ? "💀 BOSS TIME! CHOOSE CAREFULLY!"
+            : "⏰ TIME'S UP! CHOOSE NOW! 😈";
     }
 }
 
@@ -1294,23 +402,14 @@ function makeGuess() {
         return;
     }
 
-
-    /*
-       بعد انتهاء الوقت:
-       الاختيارات فقط هي المستخدمة.
-    */
-
     if(choicesVisible) {
-
         return;
     }
-
 
     let input =
         document.getElementById(
             "guessInput"
         );
-
 
     let guess =
         Number(input.value);
@@ -1325,6 +424,28 @@ function makeGuess() {
         showMessage(
             "ENTER A NUMBER FROM 1 TO 100"
         );
+
+        return;
+    }
+
+
+    guessesThisRound++;
+
+
+    /* =====================
+       ONE SHOT
+    ===================== */
+
+    if(
+        challengeType === "oneshot" &&
+        guessesThisRound > 1
+    ) {
+
+        showMessage(
+            "🎯 ONE SHOT! ROUND LOST!"
+        );
+
+        loseLife();
 
         return;
     }
@@ -1345,40 +466,49 @@ function checkGuess(guess) {
     }
 
 
+    /* =====================
+       CORRECT
+    ===================== */
+
     if(guess === secretNumber) {
 
-        clearInterval(
-            timerInterval
-        );
+        clearInterval(timerInterval);
 
 
         let reward =
-            100 * combo;
+            Math.floor(
+                100 *
+                combo *
+                roundRewardMultiplier
+            );
 
 
-        score += reward;
+        /* BOSS BONUS */
 
-        coins += 5;
+        if(challengeType === "boss") {
 
-        xp += 25;
+            reward += 500;
 
+            coins += 25;
 
-        if(
-            xp >= level * 100
-        ) {
-
-            xp -= level * 100;
-
-            level++;
-
+            xp += 100;
 
             showMessage(
-                "🔥 LEVEL UP! LEVEL " +
-                level
+                "💀 BOSS DEFEATED! +" +
+                reward +
+                " SCORE 🔥"
             );
 
         }
+
         else {
+
+            coins += 5;
+
+            xp +=
+                challengeType === "double"
+                ? 50
+                : 25;
 
             showMessage(
                 "🔥 CORRECT! +" +
@@ -1388,7 +518,42 @@ function checkGuess(guess) {
         }
 
 
+        score += reward;
+
+
+        /* =====================
+           LEVEL UP
+        ===================== */
+
+        if(
+            xp >= level * 100
+        ) {
+
+            xp -= level * 100;
+
+            level++;
+
+            showMessage(
+                "🔥 LEVEL UP! LEVEL " +
+                level
+            );
+        }
+
+
         combo++;
+
+
+        /* كل 5 كومبو مكافأة */
+
+        if(combo % 5 === 0) {
+
+            coins += 20;
+
+            showMessage(
+                "🔥🔥 COMBO MASTER! +20 COINS"
+            );
+        }
+
 
         round++;
 
@@ -1406,7 +571,7 @@ function checkGuess(guess) {
 
         setTimeout(
             newRound,
-            1000
+            1200
         );
 
 
@@ -1414,18 +579,80 @@ function checkGuess(guess) {
     }
 
 
+    /* =====================
+       WRONG
+    ===================== */
+
     if(guess > secretNumber) {
 
         showMessage(
             "⬇️ LOWER!"
         );
 
-    } else {
+    }
+
+    else {
 
         showMessage(
             "⬆️ HIGHER!"
         );
     }
+
+
+    /* ONE SHOT FAIL */
+
+    if(
+        challengeType === "oneshot"
+    ) {
+
+        setTimeout(
+            function() {
+
+                loseLife();
+
+            },
+            300
+        );
+    }
+}
+
+
+/* =========================
+   LOSE LIFE
+========================= */
+
+function loseLife() {
+
+    lives--;
+
+    combo = 1;
+
+    updateLives();
+    updateCombo();
+
+
+    if(lives <= 0) {
+
+        endGame();
+
+        return;
+    }
+
+
+    showMessage(
+        "💔 LIFE LOST! " +
+        lives +
+        " LIVES LEFT"
+    );
+
+
+    clearInterval(timerInterval);
+
+
+    setTimeout(
+        newRound,
+        1000
+    );
 }
 
 
@@ -1440,12 +667,9 @@ function createChoices() {
             "choices"
         );
 
-
     container.innerHTML = "";
 
-
     let values = [];
-
 
     values.push(secretNumber);
 
@@ -1456,7 +680,6 @@ function createChoices() {
             Math.floor(
                 Math.random() * 100
             ) + 1;
-
 
         if(!values.includes(n)) {
 
@@ -1478,10 +701,8 @@ function createChoices() {
                     "button"
                 );
 
-
             button.className =
                 "choice";
-
 
             button.textContent =
                 number;
@@ -1494,7 +715,6 @@ function createChoices() {
                         return;
                     }
 
-
                     checkGuess(number);
 
                 };
@@ -1503,7 +723,6 @@ function createChoices() {
             container.appendChild(
                 button
             );
-
         }
     );
 }
@@ -1516,7 +735,6 @@ function createChoices() {
 function updateLives() {
 
     let text = "";
-
 
     for(
         let i = 0;
@@ -1553,8 +771,7 @@ function updateCombo() {
     document.getElementById(
         "comboText"
     ).textContent =
-        "🔥 COMBO x" +
-        combo;
+        "🔥 COMBO x" + combo;
 }
 
 
@@ -1574,6 +791,8 @@ function addTime() {
     }
 
 
+    /* NO HINT تحدي لا يمنع الوقت */
+
     coins -= 10;
 
     time += 5;
@@ -1583,12 +802,6 @@ function addTime() {
         "timer"
     ).textContent = time;
 
-
-    /*
-       لو الوقت كان خلص
-       ورجعناه تاني،
-       نخفي الاختيارات.
-    */
 
     if(time > 0) {
 
@@ -1623,6 +836,19 @@ function addTime() {
 
 function useHint() {
 
+    if(
+        challengeType === "nohint" ||
+        challengeType === "boss"
+    ) {
+
+        showMessage(
+            "🚫 HINT DISABLED THIS ROUND!"
+        );
+
+        return;
+    }
+
+
     if(coins < 15) {
 
         showMessage(
@@ -1639,21 +865,35 @@ function useHint() {
     let hint;
 
 
-    if(secretNumber < 50) {
+    if(secretNumber < 25) {
 
         hint =
-            "💡 NUMBER IS BELOW 50";
+            "💡 VERY LOW — BELOW 25";
 
     }
+
+    else if(secretNumber < 50) {
+
+        hint =
+            "💡 LOW — 25 TO 49";
+
+    }
+
+    else if(secretNumber < 75) {
+
+        hint =
+            "💡 HIGH — 50 TO 74";
+
+    }
+
     else {
 
         hint =
-            "💡 NUMBER IS ABOVE 50";
+            "💡 VERY HIGH — 75 TO 100";
     }
 
 
     showMessage(hint);
-
 
     saveData();
 
@@ -1679,7 +919,6 @@ function freeGuess() {
 
     coins -= 20;
 
-
     saveData();
 
     updateGameStats();
@@ -1697,16 +936,9 @@ function freeGuess() {
 
 function rewardAd(type) {
 
-    /*
-       دي حاليًا مكافأة تجريبية.
-       الإعلان الحقيقي هنركبه لاحقًا.
-    */
-
-
     if(type === "coins") {
 
         coins += 20;
-
 
         showMessage(
             "🪙 +20 COINS!"
@@ -1771,16 +1003,13 @@ function updateGameStats() {
         "score"
     ).textContent = score;
 
-
     document.getElementById(
         "coins"
     ).textContent = coins;
 
-
     document.getElementById(
         "xp"
     ).textContent = xp;
-
 
     document.getElementById(
         "level"
@@ -1802,6 +1031,53 @@ function enterGuess(event) {
 
 
 /* =========================
+   GAME OVER
+========================= */
+
+function endGame() {
+
+    gameRunning = false;
+
+    clearInterval(timerInterval);
+
+
+    if(score > best) {
+
+        best = score;
+    }
+
+
+    saveData();
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent = score;
+
+
+    document.getElementById(
+        "gameOver"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "message"
+    ).textContent =
+        "💀 YOU DIED...";
+
+
+    document.getElementById(
+        "choices"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "choiceTitle"
+    ).style.display = "none";
+}
+
+
+/* =========================
    RESTART
 ========================= */
 
@@ -1819,6 +1095,8 @@ function restartGame() {
     lives = 3;
 
     combo = 1;
+
+    dangerLevel = 1;
 
     gameRunning = true;
 
@@ -1857,6 +1135,3 @@ function backToMenu() {
 }
 
 </script>
-
-</body>
-</html>
